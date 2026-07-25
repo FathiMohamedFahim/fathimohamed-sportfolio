@@ -8,6 +8,7 @@ import {
   FaInstagram,
   FaGithub,
 } from 'react-icons/fa'
+import { contact, social } from '../data/site'
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -62,8 +63,8 @@ function Contact() {
               <div>
                 <h3>Email</h3>
                 <p>
-                  <a href="mailto:fathimohamedfahim@gmail.com">
-                    <div className="Mail-Large">fathimohamedfahim@gmail.com</div>
+                  <a href={`mailto:${contact.email}`}>
+                    <div className="Mail-Large">{contact.email}</div>
                     <div className="Mail-Small">Mail-Me</div>
                   </a>
                 </p>
@@ -77,7 +78,7 @@ function Contact() {
               <div>
                 <h3>Whatsapp</h3>
                 <p>
-                  <a href="https://wa.me/201032622074">+20 103 262 2074</a>
+                  <a href={contact.whatsappLink}>{contact.whatsappDisplay}</a>
                 </p>
               </div>
             </div>
@@ -88,41 +89,21 @@ function Contact() {
               </div>
               <div>
                 <h3>Location</h3>
-                <p>Kafr El-Shaikh, Egypt</p>
+                <p>{contact.location}</p>
               </div>
             </div>
 
             <div className="social-icons contact-social">
-              <a
-                href="https://www.linkedin.com/in/fathi-mohamed-fahim-15a593313/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn Profile"
-              >
+              <a href={social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile">
                 <FaLinkedin />
               </a>
-              <a
-                href="https://www.behance.net/fathimohamedfahim"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Behance Profile"
-              >
+              <a href={social.behance} target="_blank" rel="noreferrer" aria-label="Behance Profile">
                 <FaBehance />
               </a>
-              <a
-                href="https://www.instagram.com/fathi_mohamed_fahim"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram Profile"
-              >
+              <a href={social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram Profile">
                 <FaInstagram />
               </a>
-              <a
-                href="https://github.com/FathiMohamedFahim"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub Profile"
-              >
+              <a href={social.github} target="_blank" rel="noreferrer" aria-label="GitHub Profile">
                 <FaGithub />
               </a>
             </div>

@@ -1,0 +1,98 @@
+/* Preview pane styling for the Decap CMS — mirrors the real site's look so
+   editing content shows roughly what it'll look like when published. */
+
+body {
+  background: #050e29;
+  color: #f5f7fb;
+  font-family: 'Poppins', 'Cairo', sans-serif;
+  padding: 24px;
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.preview-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.preview-card-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.03);
+  display: block;
+}
+
+.preview-card-body {
+  padding: 16px;
+}
+
+.preview-card-category {
+  display: inline-block;
+  font-size: 11px;
+  background: rgba(0, 255, 178, 0.1);
+  color: #00ffb2;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.preview-card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 6px;
+  color: #f5f7fb;
+}
+
+.preview-card-desc {
+  font-size: 13px;
+  color: #9fb0cc;
+  margin: 0 0 8px;
+  line-height: 1.5;
+}
+
+.preview-card-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.preview-tool-tag {
+  font-size: 10.5px;
+  color: #9fb0cc;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.preview-testimonial {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  max-width: 480px;
+}
+
+.preview-testimonial-quote {
+  font-style: italic;
+  color: #e7ecf7;
+  margin: 0 0 10px;
+  line-height: 1.6;
+}
+
+.preview-testimonial-name {
+  color: #50c4f1;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+}

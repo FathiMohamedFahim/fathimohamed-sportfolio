@@ -11,5 +11,93 @@
   <body>
     <!-- Decap CMS admin UI, loaded from CDN — no build step needed. -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <script>
+      // Live preview panes so editing content shows roughly what it will
+      // look like on the real site, instead of a bare list of form fields.
+      var h = window.h
+      var createClass = window.createClass
+
+      CMS.registerPreviewStyle('/admin/preview.css')
+
+      var ProjectsPreview = createClass({
+        render: function () {
+          var entry = this.props.entry
+          var projects = entry.getIn(['data', 'projects'])
+          if (!projects) return h('div', {}, 'No projects yet.')
+
+          return h(
+            'div',
+            { className: 'preview-grid' },
+            projects
+              .map(function (project, i) {
+                var images = project.get('images')
+                var firstImage =
+                  images && images.size > 0 ? images.get(0).get('src') : ''
+                var tools = project.get('tools')
+
+                return h(
+                  'div',
+                  { className: 'preview-card', key: i },
+                  h('img', { className: 'preview-card-img', src: firstImage }),
+                  h(
+                    'div',
+                    { className: 'preview-card-body' },
+                    h(
+                      'span',
+                      { className: 'preview-card-category' },
+                      project.get('categoryLabel')
+                    ),
+                    h('h3', { className: 'preview-card-title' }, project.get('title')),
+                    h('p', { className: 'preview-card-desc' }, project.get('description')),
+                    h(
+                      'div',
+                      { className: 'preview-card-tools' },
+                      tools
+                        ? tools
+                            .map(function (tool, ti) {
+                              return h(
+                                'span',
+                                { className: 'preview-tool-tag', key: ti },
+                                tool
+                              )
+                            })
+                            .toArray()
+                        : null
+                    )
+                  )
+                )
+              })
+              .toArray()
+          )
+        },
+      })
+
+      var TestimonialsPreview = createClass({
+        render: function () {
+          var entry = this.props.entry
+          var testimonials = entry.getIn(['data', 'testimonials'])
+          if (!testimonials) return h('div', {}, 'No testimonials yet.')
+
+          return h(
+            'div',
+            {},
+            testimonials
+              .map(function (t, i) {
+                return h(
+                  'div',
+                  { className: 'preview-testimonial', key: i },
+                  h('p', { className: 'preview-testimonial-quote' }, '“' + t.get('quote') + '”'),
+                  h('span', { className: 'preview-testimonial-name' }, '— ' + t.get('name'))
+                )
+              })
+              .toArray()
+          )
+        },
+      })
+
+      CMS.registerPreviewTemplate('projects', ProjectsPreview)
+      CMS.registerPreviewTemplate('testimonials', TestimonialsPreview)
+    </script>
   </body>
 </html>

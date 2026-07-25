@@ -5,11 +5,70 @@ backend:
   base_url: https://fathimohamedfahim.vercel.app
   auth_endpoint: api/auth
 
+# Draft/review workflow — edits create a "Draft" you can review before
+# publishing, instead of committing straight to the live site.
+publish_mode: editorial_workflow
+
+# Shown on the CMS loading/login screen.
+logo_url: /images/logo.png
+
 # Images you upload through the CMS land here and are served from /designs-img/uploads/...
 media_folder: "public/designs-img/uploads"
 public_folder: "/designs-img/uploads"
 
 collections:
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - name: "site"
+        label: "Hero / About / Contact"
+        file: "src/data/site.json"
+        fields:
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow text", name: "eyebrow", widget: "string" }
+              - { label: "Available for new work?", name: "availableForWork", widget: "boolean" }
+              - { label: "Availability badge text", name: "availabilityText", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Primary button text", name: "primaryCtaText", widget: "string" }
+              - { label: "Secondary button text", name: "secondaryCtaText", widget: "string" }
+          - label: "About Section"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "title", widget: "string" }
+              - { label: "Bio paragraph 1", name: "bio1", widget: "text" }
+              - { label: "Bio paragraph 2", name: "bio2", widget: "text" }
+              - { label: "Photo", name: "image", widget: "image" }
+              - label: "Stats"
+                name: "stats"
+                widget: "list"
+                summary: "{{number}} — {{label}}"
+                fields:
+                  - { label: "Number (e.g. 9+, 100%)", name: "number", widget: "string" }
+                  - { label: "Label", name: "label", widget: "string" }
+          - label: "Contact Info"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "Email", name: "email", widget: "string" }
+              - { label: "WhatsApp (displayed)", name: "whatsappDisplay", widget: "string" }
+              - { label: "WhatsApp link", name: "whatsappLink", widget: "string" }
+              - { label: "WhatsApp floating button link", name: "whatsappFloatLink", widget: "string" }
+              - { label: "Location", name: "location", widget: "string" }
+          - label: "Social Links"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Behance", name: "behance", widget: "string" }
+              - { label: "Instagram", name: "instagram", widget: "string" }
+              - { label: "LinkedIn", name: "linkedin", widget: "string" }
+              - { label: "Facebook", name: "facebook", widget: "string" }
+              - { label: "GitHub", name: "github", widget: "string" }
+
   - name: "projects"
     label: "Projects"
     files:

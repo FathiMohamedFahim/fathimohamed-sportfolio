@@ -9,9 +9,7 @@ import {
   FaChevronDown,
 } from 'react-icons/fa'
 import { projects } from '../data/projects'
-
-// Flip this to false when you're not taking new projects.
-const AVAILABLE_FOR_WORK = true
+import { hero, social } from '../data/site'
 
 function Hero() {
   const typedRef = useRef(null)
@@ -45,22 +43,18 @@ function Hero() {
     <section className="hero-section fade-in" id="home">
       <div className="container no-fade">
         <div className="hero-content">
-          <span className="hero-eyebrow">Graphic Designer &middot; Egypt</span>
-          {AVAILABLE_FOR_WORK && (
+          <span className="hero-eyebrow">{hero.eyebrow}</span>
+          {hero.availableForWork && (
             <span className="availability-badge">
               <span className="availability-dot"></span>
-              Available for new projects
+              {hero.availabilityText}
             </span>
           )}
           <h1 className="hero-title">
             <span ref={typedRef}></span>
           </h1>
-          <h2 className="hero-subtitle">Visual identity, social media &amp; print design</h2>
-          <p className="hero-description">
-            I design advertising campaigns, social media content, book covers and brand
-            visuals that get noticed — turning a brief into something people actually stop
-            and look at.
-          </p>
+          <h2 className="hero-subtitle">{hero.subtitle}</h2>
+          <p className="hero-description">{hero.description}</p>
 
           <div className="hero-cta">
             <a
@@ -71,7 +65,7 @@ function Hero() {
                 scrollToId('projects')
               }}
             >
-              View My Work
+              {hero.primaryCtaText}
             </a>
             <a
               href="#contact"
@@ -81,49 +75,24 @@ function Hero() {
                 scrollToId('contact')
               }}
             >
-              Let's Connect
+              {hero.secondaryCtaText}
             </a>
           </div>
 
           <div className="social-icons">
-            <a
-              href="https://www.behance.net/fathimohamedfahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Behance Profile"
-            >
+            <a href={social.behance} target="_blank" rel="noreferrer" aria-label="Behance Profile">
               <FaBehance />
             </a>
-            <a
-              href="https://www.instagram.com/fathi.mohamed.fahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram Profile"
-            >
+            <a href={social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram Profile">
               <FaInstagram />
             </a>
-            <a
-              href="https://www.linkedin.com/in/fathi-mohamed-fahim-15a593313/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn Profile"
-            >
+            <a href={social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile">
               <FaLinkedin />
             </a>
-            <a
-              href="https://www.facebook.com/fathi.mohamed.fahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook Profile"
-            >
+            <a href={social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook Profile">
               <FaFacebook />
             </a>
-            <a
-              href="https://github.com/FathiMohamedFahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub Profile"
-            >
+            <a href={social.github} target="_blank" rel="noreferrer" aria-label="GitHub Profile">
               <FaGithub />
             </a>
           </div>

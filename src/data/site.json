@@ -1,0 +1,36 @@
+{
+  "hero": {
+    "eyebrow": "Graphic Designer · Egypt",
+    "availableForWork": true,
+    "availabilityText": "Available for new projects",
+    "subtitle": "Visual identity, social media & print design",
+    "description": "I design advertising campaigns, social media content, book covers and brand visuals that get noticed — turning a brief into something people actually stop and look at.",
+    "primaryCtaText": "View My Work",
+    "secondaryCtaText": "Let's Connect"
+  },
+  "about": {
+    "title": "Hi, I'm Fathi — I turn briefs into visuals people stop for.",
+    "bio1": "I'm a graphic designer based in Kafr El-Shaikh, Egypt, working across advertising design, social media content, book covers and photo manipulation. I care about getting a design to feel finished — clean typography, a clear hierarchy, and a visual idea that actually fits the brief, not just a template with new colors.",
+    "bio2": "Add a sentence or two here about the kind of clients or industries you'd like to work with next.",
+    "image": "/designs-img/0007-Spero Spathis/0001-Social media design.png",
+    "stats": [
+      { "number": "9+", "label": "Projects Delivered" },
+      { "number": "3", "label": "Design Categories" },
+      { "number": "100%", "label": "Client Focused" }
+    ]
+  },
+  "contact": {
+    "email": "fathimohamedfahim@gmail.com",
+    "whatsappDisplay": "+20 103 262 2074",
+    "whatsappLink": "https://wa.me/201032622074",
+    "whatsappFloatLink": "https://wa.me/message/VBICAGKKTMQSO1",
+    "location": "Kafr El-Shaikh, Egypt"
+  },
+  "social": {
+    "behance": "https://www.behance.net/fathimohamedfahim",
+    "instagram": "https://www.instagram.com/fathi.mohamed.fahim",
+    "linkedin": "https://www.linkedin.com/in/fathi-mohamed-fahim-15a593313/",
+    "facebook": "https://www.facebook.com/fathi.mohamed.fahim",
+    "github": "https://github.com/FathiMohamedFahim"
+  }
+}

@@ -1,7 +1,9 @@
+import { contact } from '../data/site'
+
 function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/message/VBICAGKKTMQSO1"
+      href={contact.whatsappFloatLink}
       target="_blank"
       rel="noreferrer"
       className="whatsapp-float"
