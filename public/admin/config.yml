@@ -1,10 +1,8 @@
 backend:
   name: github
-  # TODO: replace with your actual GitHub username/repo, e.g. fathimohamed/fathi-portfolio
-  repo: fathimohamedfahim/fathimohamed-sportfolio
+  repo: FathiMohamedFahim/fathimohamed-sportfolio
   branch: main
-  # TODO: confirm this matches your real deployed Vercel URL
-  base_url: https://fathimohamed.vercel.app
+  base_url: https://fathimohamedfahim.vercel.app
   auth_endpoint: api/auth
 
 # Images you upload through the CMS land here and are served from /designs-img/uploads/...
