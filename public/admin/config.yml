@@ -2,7 +2,7 @@ backend:
   name: github
   repo: FathiMohamedFahim/fathimohamed-sportfolio
   branch: main
-  base_url: https://fathimohamedfahim.vercel.app
+  base_url: https://fathimohamed.vercel.app
   auth_endpoint: api/auth
 
 # Draft/review workflow — edits create a "Draft" you can review before
