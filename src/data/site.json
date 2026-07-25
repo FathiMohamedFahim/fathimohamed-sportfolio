@@ -1,6 +1,6 @@
 {
   "hero": {
-    "eyebrow": "Graphic Designer · Egypt",
+    "eyebrow": "Graphic Designer",
     "availableForWork": true,
     "availabilityText": "Available for new projects",
     "subtitle": "Visual identity, social media & print design",
@@ -14,9 +14,18 @@
     "bio2": "Add a sentence or two here about the kind of clients or industries you'd like to work with next.",
     "image": "/designs-img/0007-Spero Spathis/0001-Social media design.png",
     "stats": [
-      { "number": "9+", "label": "Projects Delivered" },
-      { "number": "3", "label": "Design Categories" },
-      { "number": "100%", "label": "Client Focused" }
+      {
+        "number": "9+",
+        "label": "Projects Delivered"
+      },
+      {
+        "number": "3",
+        "label": "Design Categories"
+      },
+      {
+        "number": "100%",
+        "label": "Client Focused"
+      }
     ]
   },
   "contact": {
