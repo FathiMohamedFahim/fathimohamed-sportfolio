@@ -1,15 +1,33 @@
-// Step 2 of the GitHub OAuth handshake for Decap CMS.
+// Step 2 of the GitHub OAuth handshake for the admin panel's login flow.
 // GitHub redirects here with a one-time ?code=... after the user approves
 // access. We exchange that code for a real access token (this exchange must
 // happen server-side because it requires the OAuth app's client secret),
-// then hand the token back to the Decap CMS window using the postMessage
-// handshake it expects.
+// then hand the token back to the admin app's window using a postMessage
+// handshake.
+
+function errorPage(message) {
+  const safeMessage = JSON.stringify(message)
+  return `
+    <!doctype html>
+    <html>
+      <body>
+        <p>${message}</p>
+        <script>
+          if (window.opener) {
+            window.opener.postMessage('authorization:github:error:' + ${safeMessage}, '*')
+          }
+        </script>
+      </body>
+    </html>
+  `
+}
 
 export default async function handler(req, res) {
   const { code, error, error_description: errorDescription } = req.query
 
   if (error) {
-    res.status(400).send(`GitHub OAuth error: ${errorDescription || error}`)
+    res.setHeader('Content-Type', 'text/html')
+    res.status(200).send(errorPage(errorDescription || error))
     return
   }
 
@@ -17,10 +35,13 @@ export default async function handler(req, res) {
   const clientSecret = process.env.GITHUB_CLIENT_SECRET
 
   if (!clientId || !clientSecret) {
+    res.setHeader('Content-Type', 'text/html')
     res
-      .status(500)
+      .status(200)
       .send(
-        'Missing GITHUB_CLIENT_ID or GITHUB_CLIENT_SECRET environment variable. Set both in your Vercel project settings.'
+        errorPage(
+          'Missing GITHUB_CLIENT_ID or GITHUB_CLIENT_SECRET environment variable. Set both in your Vercel project settings.'
+        )
       )
     return
   }
@@ -42,14 +63,15 @@ export default async function handler(req, res) {
     const tokenData = await tokenResponse.json()
 
     if (tokenData.error) {
-      res.status(400).send(`GitHub token exchange failed: ${tokenData.error_description || tokenData.error}`)
+      res.setHeader('Content-Type', 'text/html')
+      res.status(200).send(errorPage(tokenData.error_description || tokenData.error))
       return
     }
 
     const payload = JSON.stringify({ token: tokenData.access_token, provider: 'github' })
 
-    // This is the handshake Decap CMS's GitHub backend expects: the popup
-    // waits for a message from the opener, then replies with the token.
+    // Handshake: the popup waits for an ack from the opener, then replies
+    // with the token. See AdminApp.jsx for the other half of this.
     const html = `
       <!doctype html>
       <html>
@@ -74,6 +96,7 @@ export default async function handler(req, res) {
     res.setHeader('Content-Type', 'text/html')
     res.status(200).send(html)
   } catch (err) {
-    res.status(500).send(`Unexpected error during GitHub OAuth: ${err.message}`)
+    res.setHeader('Content-Type', 'text/html')
+    res.status(200).send(errorPage(`Unexpected error during GitHub OAuth: ${err.message}`))
   }
 }

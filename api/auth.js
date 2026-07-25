@@ -1,5 +1,5 @@
-// Step 1 of the GitHub OAuth handshake for Decap CMS.
-// The CMS admin page opens a popup pointed at this endpoint; we redirect the
+// Step 1 of the GitHub OAuth handshake for the admin panel's login flow.
+// The admin app opens a popup pointed at this endpoint; we redirect the
 // popup to GitHub's authorization screen, telling GitHub to send the user
 // back to /api/callback once they approve access.
 
