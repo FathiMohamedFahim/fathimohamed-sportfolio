@@ -1,0 +1,85 @@
+backend:
+  name: github
+  # TODO: replace with your actual GitHub username/repo, e.g. fathimohamed/fathi-portfolio
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
+  branch: main
+  # TODO: confirm this matches your real deployed Vercel URL
+  base_url: https://fathimohamed.vercel.app
+  auth_endpoint: api/auth
+
+# Images you upload through the CMS land here and are served from /designs-img/uploads/...
+media_folder: "public/designs-img/uploads"
+public_folder: "/designs-img/uploads"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    files:
+      - name: "projects"
+        label: "Projects List"
+        file: "src/data/projects.json"
+        fields:
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "ID (unique number)", name: "id", widget: "number", value_type: "int" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["branding", "social", "Book-Cover"]
+              - { label: "Category Label (shown on the site)", name: "categoryLabel", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Client name (must exactly match a testimonial name, optional)", name: "client", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Tools used"
+                name: "tools"
+                widget: "list"
+                field: { label: "Tool", name: "tool", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - label: "Images"
+                name: "images"
+                widget: "list"
+                summary: "{{label}}"
+                fields:
+                  - { label: "Image", name: "src", widget: "image" }
+                  - { label: "Alt text (for accessibility/SEO)", name: "alt", widget: "string" }
+                  - { label: "Label (e.g. Logo, Social Media Design)", name: "label", widget: "string" }
+              - { label: "Behance link (leave # if none)", name: "link", widget: "string", required: false }
+              - { label: "Case Study — The Ask", name: "challenge", widget: "text", required: false }
+              - { label: "Case Study — The Approach", name: "approach", widget: "text", required: false }
+              - { label: "Case Study — The Result", name: "result", widget: "text", required: false }
+
+  - name: "testimonials"
+    label: "Testimonials"
+    files:
+      - name: "testimonials"
+        label: "Testimonials List"
+        file: "src/data/testimonials.json"
+        fields:
+          - label: "Testimonials"
+            name: "testimonials"
+            widget: "list"
+            summary: "{{name}}"
+            fields:
+              - { label: "ID (unique number)", name: "id", widget: "number", value_type: "int" }
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Client name", name: "name", widget: "string" }
+
+  - name: "services"
+    label: "Services"
+    files:
+      - name: "services"
+        label: "Services List"
+        file: "src/data/services.json"
+        fields:
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "ID (unique number)", name: "id", widget: "number", value_type: "int" }
+              - { label: "Icon (Font Awesome name, e.g. bullhorn, shapes)", name: "iconClass", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }

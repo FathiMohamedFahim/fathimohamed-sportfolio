@@ -1,0 +1,40 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "iconClass": "bullhorn",
+      "title": "Advertising Design",
+      "description": "Designing creative ads & visual campaigns that attract attention and convert."
+    },
+    {
+      "id": 2,
+      "iconClass": "share-alt",
+      "title": "Social Media Design",
+      "description": "Trendy posts, stories & banners that boost brand presence across platforms."
+    },
+    {
+      "id": 3,
+      "iconClass": "object-ungroup",
+      "title": "Photo Manipulation",
+      "description": "Creative photo compositions, surreal edits & special effects that tell stories."
+    },
+    {
+      "id": 4,
+      "iconClass": "lightbulb",
+      "title": "Concept Design",
+      "description": "Turning ideas and briefs into strong creative visual concepts."
+    },
+    {
+      "id": 5,
+      "iconClass": "shapes",
+      "title": "Logo Design",
+      "description": "Simple and memorable logo concepts that match brand identity."
+    },
+    {
+      "id": 6,
+      "iconClass": "camera-retro",
+      "title": "Photo Editing",
+      "description": "Retouching, color correction & professional visual enhancements."
+    }
+  ]
+}

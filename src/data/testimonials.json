@@ -1,0 +1,19 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "quote": "Working with Fathi was a great experience. The branding and marketing materials were clean, modern, and delivered on time. Highly professional throughout the project.",
+      "name": "Al-Khaleeji Real Estate"
+    },
+    {
+      "id": 2,
+      "quote": "Excellent attention to detail and creative design solutions. Our visual identity became much more consistent and engaging thanks to Fathi's work.",
+      "name": "Arkan Real Estate"
+    },
+    {
+      "id": 3,
+      "quote": "Fast communication, high-quality work, and a smooth collaboration from start to finish. I would definitely recommend Fathi for any creative design project.",
+      "name": "Mohamed Al-Kenawey"
+    }
+  ]
+}
