@@ -27,7 +27,7 @@ function Services() {
         <div className="services-grid">
           {services.map(service => (
             <div className="service-card" key={service.id}>
-              <div className="service-icon">{iconMap[service.iconClass]}</div>
+              <div className="service-icon">{iconMap[service.iconClass] || <FaShapes />}</div>
               <div className="service-content">
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>

@@ -96,8 +96,70 @@
         },
       })
 
+      var ServicesPreview = createClass({
+        render: function () {
+          var entry = this.props.entry
+          var services = entry.getIn(['data', 'services'])
+          if (!services) return h('div', {}, 'No services yet.')
+
+          return h(
+            'div',
+            { className: 'preview-grid' },
+            services
+              .map(function (service, i) {
+                return h(
+                  'div',
+                  { className: 'preview-card', key: i },
+                  h(
+                    'div',
+                    { className: 'preview-card-body' },
+                    h('h3', { className: 'preview-card-title' }, service.get('title')),
+                    h('p', { className: 'preview-card-desc' }, service.get('description'))
+                  )
+                )
+              })
+              .toArray()
+          )
+        },
+      })
+
+      var SitePreview = createClass({
+        render: function () {
+          var entry = this.props.entry
+          var hero = entry.getIn(['data', 'hero'])
+          var about = entry.getIn(['data', 'about'])
+          if (!hero) return h('div', {}, 'No content yet.')
+
+          return h(
+            'div',
+            { className: 'site-preview' },
+            h(
+              'div',
+              { className: 'site-preview-hero' },
+              hero.get('availableForWork')
+                ? h('span', { className: 'preview-card-category' }, hero.get('availabilityText'))
+                : null,
+              h('h1', { className: 'site-preview-title' }, 'Fathi Mohamed'),
+              h('h2', { className: 'site-preview-subtitle' }, hero.get('subtitle')),
+              h('p', { className: 'preview-card-desc' }, hero.get('description'))
+            ),
+            about
+              ? h(
+                  'div',
+                  { className: 'site-preview-about' },
+                  h('h3', { className: 'preview-card-title' }, about.get('title')),
+                  h('p', { className: 'preview-card-desc' }, about.get('bio1')),
+                  h('p', { className: 'preview-card-desc' }, about.get('bio2'))
+                )
+              : null
+          )
+        },
+      })
+
       CMS.registerPreviewTemplate('projects', ProjectsPreview)
       CMS.registerPreviewTemplate('testimonials', TestimonialsPreview)
+      CMS.registerPreviewTemplate('services', ServicesPreview)
+      CMS.registerPreviewTemplate('site', SitePreview)
     </script>
   </body>
 </html>

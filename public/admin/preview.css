@@ -96,3 +96,29 @@ body {
   font-weight: 600;
   font-size: 14px;
 }
+
+.site-preview-hero {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  margin-bottom: 20px;
+}
+
+.site-preview-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f5f7fb;
+  margin: 10px 0 4px;
+}
+
+.site-preview-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #00ffb2;
+  margin: 0 0 10px;
+}
+
+.site-preview-about {
+  padding-top: 8px;
+}

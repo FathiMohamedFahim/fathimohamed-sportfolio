@@ -27,47 +27,57 @@ collections:
           - label: "Hero Section"
             name: "hero"
             widget: "object"
+            collapsed: false
             fields:
-              - { label: "Eyebrow text", name: "eyebrow", widget: "string" }
-              - { label: "Available for new work?", name: "availableForWork", widget: "boolean" }
+              - { label: "Eyebrow text", name: "eyebrow", widget: "string", hint: "Small text above your name, e.g. 'Graphic Designer · Egypt'" }
+              - { label: "Available for new work?", name: "availableForWork", widget: "boolean", default: true, hint: "Turns the green availability badge on/off" }
               - { label: "Availability badge text", name: "availabilityText", widget: "string" }
               - { label: "Subtitle", name: "subtitle", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
-              - { label: "Primary button text", name: "primaryCtaText", widget: "string" }
-              - { label: "Secondary button text", name: "secondaryCtaText", widget: "string" }
+              - { label: "Description", name: "description", widget: "text", hint: "1-2 sentences under your title" }
+              - { label: "Primary button text", name: "primaryCtaText", widget: "string", default: "View My Work" }
+              - { label: "Secondary button text", name: "secondaryCtaText", widget: "string", default: "Let's Connect" }
           - label: "About Section"
             name: "about"
             widget: "object"
+            collapsed: true
             fields:
               - { label: "Heading", name: "title", widget: "string" }
               - { label: "Bio paragraph 1", name: "bio1", widget: "text" }
               - { label: "Bio paragraph 2", name: "bio2", widget: "text" }
-              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Photo", name: "image", widget: "image", hint: "Shown next to your bio — landscape works best" }
               - label: "Stats"
                 name: "stats"
                 widget: "list"
+                collapsed: true
                 summary: "{{number}} — {{label}}"
+                min: 1
+                max: 4
                 fields:
                   - { label: "Number (e.g. 9+, 100%)", name: "number", widget: "string" }
                   - { label: "Label", name: "label", widget: "string" }
           - label: "Contact Info"
             name: "contact"
             widget: "object"
+            collapsed: true
             fields:
-              - { label: "Email", name: "email", widget: "string" }
-              - { label: "WhatsApp (displayed)", name: "whatsappDisplay", widget: "string" }
-              - { label: "WhatsApp link", name: "whatsappLink", widget: "string" }
+              - label: "Email"
+                name: "email"
+                widget: "string"
+                pattern: ['^\S+@\S+\.\S+$', "Must be a valid email address"]
+              - { label: "WhatsApp (displayed)", name: "whatsappDisplay", widget: "string", hint: "How the number looks, e.g. +20 103 262 2074" }
+              - { label: "WhatsApp link", name: "whatsappLink", widget: "string", hint: "e.g. https://wa.me/201032622074" }
               - { label: "WhatsApp floating button link", name: "whatsappFloatLink", widget: "string" }
               - { label: "Location", name: "location", widget: "string" }
           - label: "Social Links"
             name: "social"
             widget: "object"
+            collapsed: true
             fields:
-              - { label: "Behance", name: "behance", widget: "string" }
-              - { label: "Instagram", name: "instagram", widget: "string" }
-              - { label: "LinkedIn", name: "linkedin", widget: "string" }
-              - { label: "Facebook", name: "facebook", widget: "string" }
-              - { label: "GitHub", name: "github", widget: "string" }
+              - { label: "Behance", name: "behance", widget: "string", pattern: ['^https://', "Must start with https://"] }
+              - { label: "Instagram", name: "instagram", widget: "string", pattern: ['^https://', "Must start with https://"] }
+              - { label: "LinkedIn", name: "linkedin", widget: "string", pattern: ['^https://', "Must start with https://"] }
+              - { label: "Facebook", name: "facebook", widget: "string", pattern: ['^https://', "Must start with https://"] }
+              - { label: "GitHub", name: "github", widget: "string", pattern: ['^https://', "Must start with https://"] }
 
   - name: "projects"
     label: "Projects"
@@ -79,34 +89,72 @@ collections:
           - label: "Projects"
             name: "projects"
             widget: "list"
-            summary: "{{title}}"
+            summary: "{{fields.title}} — {{fields.categoryLabel}}"
+            collapsed: true
             fields:
-              - { label: "ID (unique number)", name: "id", widget: "number", value_type: "int" }
+              - { label: "ID (unique number — don't reuse an existing one)", name: "id", widget: "number", value_type: "int" }
               - label: "Category"
                 name: "category"
                 widget: "select"
                 options: ["branding", "social", "Book-Cover"]
-              - { label: "Category Label (shown on the site)", name: "categoryLabel", widget: "string" }
+                hint: "Controls which filter button shows this project"
+              - label: "Category Label (shown on the site)"
+                name: "categoryLabel"
+                widget: "select"
+                options: ["Branding & Logo Design", "Branding & Social Media", "Social Media Design", "Book Cover"]
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Client name (must exactly match a testimonial name, optional)", name: "client", widget: "string", required: false }
+              - label: "Client (optional)"
+                name: "client"
+                widget: "string"
+                required: false
+                hint: "Must exactly match a testimonial's client name (see Testimonials tab) to auto-link the real quote. Leave blank if none."
               - { label: "Description", name: "description", widget: "text" }
               - label: "Tools used"
                 name: "tools"
                 widget: "list"
-                field: { label: "Tool", name: "tool", widget: "string" }
+                collapsed: true
+                summary: "{{fields.tool}}"
+                field:
+                  label: "Tool"
+                  name: "tool"
+                  widget: "select"
+                  options:
+                    - "Photoshop"
+                    - "Illustrator"
+                    - "InDesign"
+                    - "Lightroom"
+                    - "Premiere Pro"
+                    - "After Effects"
+                    - "Canva"
+                    - "Figma"
+                    - "CorelDRAW"
               - { label: "Role", name: "role", widget: "string" }
               - label: "Images"
                 name: "images"
                 widget: "list"
-                summary: "{{label}}"
+                collapsed: true
+                summary: "{{fields.label}}"
+                min: 1
                 fields:
-                  - { label: "Image", name: "src", widget: "image" }
+                  - { label: "Image", name: "src", widget: "image", hint: "Landscape (3:2) works best with the grid" }
                   - { label: "Alt text (for accessibility/SEO)", name: "alt", widget: "string" }
                   - { label: "Label (e.g. Logo, Social Media Design)", name: "label", widget: "string" }
               - { label: "Behance link (leave # if none)", name: "link", widget: "string", required: false }
-              - { label: "Case Study — The Ask", name: "challenge", widget: "text", required: false }
-              - { label: "Case Study — The Approach", name: "approach", widget: "text", required: false }
-              - { label: "Case Study — The Result", name: "result", widget: "text", required: false }
+              - label: "Case Study — The Ask"
+                name: "challenge"
+                widget: "text"
+                required: false
+                hint: "What the client needed / the problem you solved"
+              - label: "Case Study — The Approach"
+                name: "approach"
+                widget: "text"
+                required: false
+                hint: "Your thinking — why you made the choices you made"
+              - label: "Case Study — The Result"
+                name: "result"
+                widget: "text"
+                required: false
+                hint: "What happened — delivered on time, used in their campaign, etc."
 
   - name: "testimonials"
     label: "Testimonials"
@@ -118,11 +166,12 @@ collections:
           - label: "Testimonials"
             name: "testimonials"
             widget: "list"
-            summary: "{{name}}"
+            summary: "{{fields.name}}"
+            collapsed: true
             fields:
-              - { label: "ID (unique number)", name: "id", widget: "number", value_type: "int" }
-              - { label: "Quote", name: "quote", widget: "text" }
-              - { label: "Client name", name: "name", widget: "string" }
+              - { label: "ID (unique number — don't reuse an existing one)", name: "id", widget: "number", value_type: "int" }
+              - { label: "Quote", name: "quote", widget: "text", hint: "Use the client's real words — this shows up on the site as-is" }
+              - { label: "Client name", name: "name", widget: "string", hint: "Must match exactly if you want to link it to a project" }
 
   - name: "services"
     label: "Services"
@@ -134,9 +183,21 @@ collections:
           - label: "Services"
             name: "services"
             widget: "list"
-            summary: "{{title}}"
+            summary: "{{fields.title}}"
+            collapsed: true
+            min: 1
             fields:
-              - { label: "ID (unique number)", name: "id", widget: "number", value_type: "int" }
-              - { label: "Icon (Font Awesome name, e.g. bullhorn, shapes)", name: "iconClass", widget: "string" }
+              - { label: "ID (unique number — don't reuse an existing one)", name: "id", widget: "number", value_type: "int" }
+              - label: "Icon"
+                name: "iconClass"
+                widget: "select"
+                options:
+                  - { label: "Bullhorn (advertising)", value: "bullhorn" }
+                  - { label: "Share (social media)", value: "share-alt" }
+                  - { label: "Layers (photo manipulation)", value: "object-ungroup" }
+                  - { label: "Lightbulb (concept/ideas)", value: "lightbulb" }
+                  - { label: "Shapes (logo design)", value: "shapes" }
+                  - { label: "Camera (photo editing)", value: "camera-retro" }
+                hint: "Only these 6 icons are wired up on the site"
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
