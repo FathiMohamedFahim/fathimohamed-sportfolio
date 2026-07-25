@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useJsonFile } from '../useJsonFile'
 import { uploadImage } from '../github'
 import SaveBar from '../components/SaveBar'
@@ -42,14 +42,19 @@ function emptyProject(id) {
   }
 }
 
-function ProjectsEditor({ token }) {
-  const { data, setData, loading, saving, error, savedAt, save } = useJsonFile(
+function ProjectsEditor({ token, onDirtyChange }) {
+  const { data, setData, loading, saving, error, savedAt, save, isDirty } = useJsonFile(
     token,
     'src/data/projects.json'
   )
   const [localError, setLocalError] = useState(null)
   const [expandedId, setExpandedId] = useState(null)
   const [uploadingFor, setUploadingFor] = useState(null)
+  const [customTool, setCustomTool] = useState('')
+
+  useEffect(() => {
+    onDirtyChange?.(isDirty)
+  }, [isDirty, onDirtyChange])
 
   if (loading) return <p className="admin-status">Loading projects…</p>
   if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
@@ -95,6 +100,25 @@ function ProjectsEditor({ token }) {
       'images',
       project.images.filter((_, i) => i !== imgIndex)
     )
+  }
+
+  function moveImage(index, imgIndex, direction) {
+    const project = projects[index]
+    const images = [...project.images]
+    const targetIndex = imgIndex + direction
+    if (targetIndex < 0 || targetIndex >= images.length) return
+    ;[images[imgIndex], images[targetIndex]] = [images[targetIndex], images[imgIndex]]
+    updateProject(index, 'images', images)
+  }
+
+  function addCustomTool(index) {
+    const tool = customTool.trim()
+    if (!tool) return
+    const project = projects[index]
+    if (!project.tools.includes(tool)) {
+      updateProject(index, 'tools', [...project.tools, tool])
+    }
+    setCustomTool('')
   }
 
   async function handleImageUpload(index, file) {
@@ -230,12 +254,47 @@ function ProjectsEditor({ token }) {
                       {tool}
                     </button>
                   ))}
+                  {project.tools
+                    .filter(t => !TOOL_OPTIONS.includes(t))
+                    .map(tool => (
+                      <button
+                        type="button"
+                        key={tool}
+                        className="admin-chip active"
+                        onClick={() => toggleTool(i, tool)}
+                        title="Custom tool — click to remove"
+                      >
+                        {tool}
+                      </button>
+                    ))}
+                </div>
+                <div className="admin-custom-tool-row">
+                  <input
+                    type="text"
+                    placeholder="Other tool not listed…"
+                    value={customTool}
+                    onChange={e => setCustomTool(e.target.value)}
+                    onKeyDown={e => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        addCustomTool(i)
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    className="admin-expand-btn"
+                    onClick={() => addCustomTool(i)}
+                  >
+                    Add
+                  </button>
                 </div>
 
                 <label className="admin-label">Images</label>
                 {project.images.map((img, imgIndex) => (
                   <div className="admin-image-row" key={imgIndex}>
                     <img src={img.src} alt="" className="admin-image-row-thumb" />
+                    {imgIndex === 0 && <span className="admin-cover-badge">Cover</span>}
                     <div className="admin-image-row-fields">
                       <input
                         type="text"
@@ -250,14 +309,35 @@ function ProjectsEditor({ token }) {
                         onChange={e => updateImage(i, imgIndex, 'alt', e.target.value)}
                       />
                     </div>
-                    <button
-                      type="button"
-                      className="admin-icon-btn admin-remove-btn"
-                      onClick={() => removeImage(i, imgIndex)}
-                      aria-label="Remove image"
-                    >
-                      &times;
-                    </button>
+                    <div className="admin-image-row-actions">
+                      <button
+                        type="button"
+                        className="admin-icon-btn"
+                        onClick={() => moveImage(i, imgIndex, -1)}
+                        disabled={imgIndex === 0}
+                        aria-label="Move image up"
+                        title="Move up (makes it the cover if moved to first)"
+                      >
+                        &uarr;
+                      </button>
+                      <button
+                        type="button"
+                        className="admin-icon-btn"
+                        onClick={() => moveImage(i, imgIndex, 1)}
+                        disabled={imgIndex === project.images.length - 1}
+                        aria-label="Move image down"
+                      >
+                        &darr;
+                      </button>
+                      <button
+                        type="button"
+                        className="admin-icon-btn admin-remove-btn"
+                        onClick={() => removeImage(i, imgIndex)}
+                        aria-label="Remove image"
+                      >
+                        &times;
+                      </button>
+                    </div>
                   </div>
                 ))}
 

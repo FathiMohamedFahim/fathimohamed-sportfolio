@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { getJsonFile, updateJsonFile } from './github'
 
 export function useJsonFile(token, path) {
@@ -8,6 +8,7 @@ export function useJsonFile(token, path) {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState(null)
   const [savedAt, setSavedAt] = useState(null)
+  const originalRef = useRef(null)
 
   const load = useCallback(() => {
     setLoading(true)
@@ -16,6 +17,7 @@ export function useJsonFile(token, path) {
       .then(({ json, sha }) => {
         setData(json)
         setSha(sha)
+        originalRef.current = JSON.stringify(json)
         setLoading(false)
       })
       .catch(err => {
@@ -36,6 +38,7 @@ export function useJsonFile(token, path) {
         const { sha: newSha } = await updateJsonFile(token, path, newData, sha, message)
         setSha(newSha)
         setData(newData)
+        originalRef.current = JSON.stringify(newData)
         setSavedAt(Date.now())
         setSaving(false)
         return true
@@ -48,5 +51,7 @@ export function useJsonFile(token, path) {
     [token, path, sha]
   )
 
-  return { data, setData, loading, saving, error, savedAt, save, reload: load }
+  const isDirty = data !== null && JSON.stringify(data) !== originalRef.current
+
+  return { data, setData, loading, saving, error, savedAt, save, reload: load, isDirty }
 }

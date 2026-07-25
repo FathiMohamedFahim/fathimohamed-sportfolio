@@ -155,6 +155,26 @@ body {
   color: var(--on-accent);
 }
 
+.admin-dirty-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.admin-view-site-link {
+  color: var(--muted);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+}
+
+.admin-view-site-link:hover {
+  color: var(--sky);
+}
+
 .admin-user {
   display: flex;
   align-items: center;
@@ -446,6 +466,51 @@ body {
   align-items: center;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.admin-cover-badge {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--mint);
+  border: 1px solid rgba(0, 255, 178, 0.3);
+  background: rgba(0, 255, 178, 0.08);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.admin-image-row-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.admin-icon-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.admin-icon-btn:not(:disabled):hover {
+  border-color: var(--sky);
+  color: var(--sky);
+}
+
+.admin-custom-tool-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.admin-custom-tool-row input {
+  flex: 1;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: var(--font-size-sm);
 }
 
 .admin-image-row-thumb {

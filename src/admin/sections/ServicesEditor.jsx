@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useJsonFile } from '../useJsonFile'
 import SaveBar from '../components/SaveBar'
 import FormField from '../components/FormField'
@@ -16,12 +16,16 @@ function nextId(items) {
   return items.length ? Math.max(...items.map(i => i.id)) + 1 : 1
 }
 
-function ServicesEditor({ token }) {
-  const { data, setData, loading, saving, error, savedAt, save } = useJsonFile(
+function ServicesEditor({ token, onDirtyChange }) {
+  const { data, setData, loading, saving, error, savedAt, save, isDirty } = useJsonFile(
     token,
     'src/data/services.json'
   )
   const [localError, setLocalError] = useState(null)
+
+  useEffect(() => {
+    onDirtyChange?.(isDirty)
+  }, [isDirty, onDirtyChange])
 
   if (loading) return <p className="admin-status">Loading services…</p>
   if (error && !data) return <p className="admin-status admin-status-error">{error}</p>

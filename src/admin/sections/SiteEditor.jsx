@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useJsonFile } from '../useJsonFile'
 import SaveBar from '../components/SaveBar'
 import FormField from '../components/FormField'
 
-function SiteEditor({ token }) {
-  const { data, setData, loading, saving, error, savedAt, save } = useJsonFile(
+function SiteEditor({ token, onDirtyChange }) {
+  const { data, setData, loading, saving, error, savedAt, save, isDirty } = useJsonFile(
     token,
     'src/data/site.json'
   )
   const [localError, setLocalError] = useState(null)
+
+  useEffect(() => {
+    onDirtyChange?.(isDirty)
+  }, [isDirty, onDirtyChange])
 
   if (loading) return <p className="admin-status">Loading site content…</p>
   if (error) return <p className="admin-status admin-status-error">{error}</p>

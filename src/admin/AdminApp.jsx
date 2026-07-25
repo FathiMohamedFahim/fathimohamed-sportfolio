@@ -20,7 +20,20 @@ function AdminApp() {
   const [authError, setAuthError] = useState(null)
   const [checkingAuth, setCheckingAuth] = useState(true)
   const [activeTab, setActiveTab] = useState('site')
+  const [dirtyMap, setDirtyMap] = useState({})
   const popupRef = useRef(null)
+
+  const anyDirty = Object.values(dirtyMap).some(Boolean)
+
+  useEffect(() => {
+    function handleBeforeUnload(e) {
+      if (!anyDirty) return
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [anyDirty])
 
   const handleMessage = useCallback(event => {
     if (typeof event.data !== 'string') return
@@ -136,10 +149,19 @@ function AdminApp() {
                 onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
+                {dirtyMap[tab.id] && <span className="admin-dirty-dot" title="Unsaved changes" />}
               </button>
             ))}
           </nav>
           <div className="admin-user">
+            <a
+              href="/"
+              target="_blank"
+              rel="noreferrer"
+              className="admin-view-site-link"
+            >
+              View Live Site &#8599;
+            </a>
             <img src={user.avatar_url} alt="" className="admin-user-avatar" />
             <span>{user.login}</span>
             <button className="btn btn-secondary admin-logout-btn" onClick={logout}>
@@ -150,10 +172,30 @@ function AdminApp() {
       </header>
 
       <main className="admin-main">
-        {activeTab === 'site' && <SiteEditor token={token} />}
-        {activeTab === 'projects' && <ProjectsEditor token={token} />}
-        {activeTab === 'testimonials' && <TestimonialsEditor token={token} />}
-        {activeTab === 'services' && <ServicesEditor token={token} />}
+        <div style={{ display: activeTab === 'site' ? 'block' : 'none' }}>
+          <SiteEditor
+            token={token}
+            onDirtyChange={dirty => setDirtyMap(m => ({ ...m, site: dirty }))}
+          />
+        </div>
+        <div style={{ display: activeTab === 'projects' ? 'block' : 'none' }}>
+          <ProjectsEditor
+            token={token}
+            onDirtyChange={dirty => setDirtyMap(m => ({ ...m, projects: dirty }))}
+          />
+        </div>
+        <div style={{ display: activeTab === 'testimonials' ? 'block' : 'none' }}>
+          <TestimonialsEditor
+            token={token}
+            onDirtyChange={dirty => setDirtyMap(m => ({ ...m, testimonials: dirty }))}
+          />
+        </div>
+        <div style={{ display: activeTab === 'services' ? 'block' : 'none' }}>
+          <ServicesEditor
+            token={token}
+            onDirtyChange={dirty => setDirtyMap(m => ({ ...m, services: dirty }))}
+          />
+        </div>
       </main>
     </div>
   )
