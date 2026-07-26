@@ -147,22 +147,6 @@ function Projects() {
             Let's Talk
           </a>
         </div>
-
-        <div className="projects-cta">
-          <p>Working on something similar?</p>
-          <a
-            href="#contact"
-            className="btn btn-primary"
-            onClick={e => {
-              e.preventDefault()
-              const target = document.querySelector('#contact')
-              const headerHeight = document.querySelector('header').offsetHeight
-              window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' })
-            }}
-          >
-            Let's Talk
-          </a>
-        </div>
       </div>
 
       {activeIndex !== null && (
