@@ -60,14 +60,11 @@ function Contact() {
               <div className="contact-icon">
                 <FaEnvelope />
               </div>
-              <div>
+              <div className="contact-method-text">
                 <h3>Email</h3>
-                <p>
-                  <a href={`mailto:${contact.email}`}>
-                    <div className="Mail-Large">{contact.email}</div>
-                    <div className="Mail-Small">Mail-Me</div>
-                  </a>
-                </p>
+                <a href={`mailto:${contact.email}`} className="contact-email-link">
+                  {contact.email}
+                </a>
               </div>
             </div>
 
@@ -75,7 +72,7 @@ function Contact() {
               <div className="contact-icon">
                 <FaWhatsapp />
               </div>
-              <div>
+              <div className="contact-method-text">
                 <h3>Whatsapp</h3>
                 <p>
                   <a href={contact.whatsappLink}>{contact.whatsappDisplay}</a>
@@ -87,7 +84,7 @@ function Contact() {
               <div className="contact-icon">
                 <FaMapMarkerAlt />
               </div>
-              <div>
+              <div className="contact-method-text">
                 <h3>Location</h3>
                 <p>{contact.location}</p>
               </div>

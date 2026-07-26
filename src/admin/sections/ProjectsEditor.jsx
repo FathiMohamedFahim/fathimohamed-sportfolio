@@ -309,26 +309,38 @@ function ProjectsEditor({ token, onDirtyChange }) {
                         onChange={e => updateImage(i, imgIndex, 'alt', e.target.value)}
                       />
                     </div>
-                    <div className="admin-image-row-actions">
-                      <button
-                        type="button"
-                        className="admin-icon-btn"
-                        onClick={() => moveImage(i, imgIndex, -1)}
-                        disabled={imgIndex === 0}
-                        aria-label="Move image up"
-                        title="Move up (makes it the cover if moved to first)"
-                      >
-                        &uarr;
-                      </button>
-                      <button
-                        type="button"
-                        className="admin-icon-btn"
-                        onClick={() => moveImage(i, imgIndex, 1)}
-                        disabled={imgIndex === project.images.length - 1}
-                        aria-label="Move image down"
-                      >
-                        &darr;
-                      </button>
+                    {project.images.length > 1 && (
+                      <div className="admin-image-row-actions">
+                        <button
+                          type="button"
+                          className="admin-icon-btn"
+                          onClick={() => moveImage(i, imgIndex, -1)}
+                          disabled={imgIndex === 0}
+                          aria-label="Move image up"
+                          title="Move up (makes it the cover if moved to first)"
+                        >
+                          &uarr;
+                        </button>
+                        <button
+                          type="button"
+                          className="admin-icon-btn"
+                          onClick={() => moveImage(i, imgIndex, 1)}
+                          disabled={imgIndex === project.images.length - 1}
+                          aria-label="Move image down"
+                        >
+                          &darr;
+                        </button>
+                        <button
+                          type="button"
+                          className="admin-icon-btn admin-remove-btn"
+                          onClick={() => removeImage(i, imgIndex)}
+                          aria-label="Remove image"
+                        >
+                          &times;
+                        </button>
+                      </div>
+                    )}
+                    {project.images.length === 1 && (
                       <button
                         type="button"
                         className="admin-icon-btn admin-remove-btn"
@@ -337,7 +349,7 @@ function ProjectsEditor({ token, onDirtyChange }) {
                       >
                         &times;
                       </button>
-                    </div>
+                    )}
                   </div>
                 ))}
 
