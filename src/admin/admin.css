@@ -568,6 +568,74 @@ body {
   padding: var(--spacing-sm) 0;
 }
 
+/* Image Guide */
+.admin-guide-badge {
+  font-size: 0.7rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.admin-guide-badge-good {
+  background: rgba(0, 255, 178, 0.12);
+  color: var(--mint);
+  border: 1px solid rgba(0, 255, 178, 0.3);
+}
+
+.admin-guide-badge-warning {
+  background: rgba(255, 138, 138, 0.12);
+  color: #ff8a8a;
+  border: 1px solid rgba(255, 138, 138, 0.3);
+}
+
+.admin-guide-badge-info {
+  background: rgba(80, 196, 241, 0.12);
+  color: var(--sky);
+  border: 1px solid rgba(80, 196, 241, 0.3);
+}
+
+.admin-guide-path {
+  font-size: 0.75rem;
+  color: var(--muted-soft);
+  font-family: monospace;
+  margin-bottom: var(--spacing-md);
+  word-break: break-word;
+}
+
+.admin-guide-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: var(--ink);
+}
+
+.admin-guide-label {
+  flex-shrink: 0;
+  width: 110px;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+}
+
+.admin-guide-behavior {
+  margin-top: var(--spacing-md);
+}
+
+@media (max-width: 500px) {
+  .admin-guide-row {
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .admin-guide-label {
+    width: auto;
+  }
+}
+
 @media (max-width: 600px) {
   .admin-image-row-fields {
     grid-template-columns: 1fr;

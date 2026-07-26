@@ -4,6 +4,7 @@ import SiteEditor from './sections/SiteEditor'
 import ProjectsEditor from './sections/ProjectsEditor'
 import TestimonialsEditor from './sections/TestimonialsEditor'
 import ServicesEditor from './sections/ServicesEditor'
+import ImageGuide from './sections/ImageGuide'
 
 const TOKEN_KEY = 'admin_github_token'
 
@@ -12,6 +13,7 @@ const TABS = [
   { id: 'projects', label: 'Projects' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'services', label: 'Services' },
+  { id: 'image-guide', label: 'Image Guide' },
 ]
 
 function AdminApp() {
@@ -195,6 +197,9 @@ function AdminApp() {
             token={token}
             onDirtyChange={dirty => setDirtyMap(m => ({ ...m, services: dirty }))}
           />
+        </div>
+        <div style={{ display: activeTab === 'image-guide' ? 'block' : 'none' }}>
+          <ImageGuide />
         </div>
       </main>
     </div>
