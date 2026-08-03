@@ -1,14 +1,19 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { getAuthenticatedUser } from './github'
+import Dashboard from './sections/Dashboard'
 import SiteEditor from './sections/SiteEditor'
 import ProjectsEditor from './sections/ProjectsEditor'
 import TestimonialsEditor from './sections/TestimonialsEditor'
 import ServicesEditor from './sections/ServicesEditor'
 import ImageGuide from './sections/ImageGuide'
+import ToastStack from './components/Toast'
+import ConfirmModal from './components/ConfirmModal'
 
 const TOKEN_KEY = 'admin_github_token'
+let toastCounter = 0
 
 const TABS = [
+  { id: 'dashboard', label: 'Dashboard' },
   { id: 'site', label: 'Site Settings' },
   { id: 'projects', label: 'Projects' },
   { id: 'testimonials', label: 'Testimonials' },
@@ -21,11 +26,40 @@ function AdminApp() {
   const [user, setUser] = useState(null)
   const [authError, setAuthError] = useState(null)
   const [checkingAuth, setCheckingAuth] = useState(true)
-  const [activeTab, setActiveTab] = useState('site')
+  const [activeTab, setActiveTab] = useState('dashboard')
   const [dirtyMap, setDirtyMap] = useState({})
+  const [toasts, setToasts] = useState([])
+  const [confirmState, setConfirmState] = useState(null)
   const popupRef = useRef(null)
+  const saveHandlersRef = useRef({})
 
   const anyDirty = Object.values(dirtyMap).some(Boolean)
+
+  const showToast = useCallback((message, type = 'success') => {
+    const id = ++toastCounter
+    setToasts(t => [...t, { id, message, type }])
+  }, [])
+
+  const dismissToast = useCallback(id => {
+    setToasts(t => t.filter(toast => toast.id !== id))
+  }, [])
+
+  const confirmAction = useCallback((message, confirmLabel) => {
+    return new Promise(resolve => {
+      setConfirmState({
+        message,
+        confirmLabel,
+        resolveCallback: value => {
+          setConfirmState(null)
+          resolve(value)
+        },
+      })
+    })
+  }, [])
+
+  function registerSaveHandler(tabId, fn) {
+    saveHandlersRef.current[tabId] = fn
+  }
 
   useEffect(() => {
     function handleBeforeUnload(e) {
@@ -37,11 +71,22 @@ function AdminApp() {
     return () => window.removeEventListener('beforeunload', handleBeforeUnload)
   }, [anyDirty])
 
+  useEffect(() => {
+    function handleKeyDown(e) {
+      const isSaveShortcut = (e.metaKey || e.ctrlKey) && e.key === 's'
+      if (!isSaveShortcut) return
+      e.preventDefault()
+      const handler = saveHandlersRef.current[activeTab]
+      if (handler) handler()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [activeTab])
+
   const handleMessage = useCallback(event => {
     if (typeof event.data !== 'string') return
 
     if (event.data === 'authorizing:github') {
-      // Handshake ack — tell the popup we're listening so it sends the token.
       popupRef.current?.postMessage('authorizing:github', event.origin)
       return
     }
@@ -82,7 +127,6 @@ function AdminApp() {
         setCheckingAuth(false)
       })
       .catch(() => {
-        // Token is stale/invalid — clear it and fall back to the login screen.
         localStorage.removeItem(TOKEN_KEY)
         setToken(null)
         setCheckingAuth(false)
@@ -135,6 +179,8 @@ function AdminApp() {
     )
   }
 
+  const sharedProps = { token, showToast, confirmAction }
+
   return (
     <div className="admin-shell">
       <header className="admin-header">
@@ -156,12 +202,7 @@ function AdminApp() {
             ))}
           </nav>
           <div className="admin-user">
-            <a
-              href="/"
-              target="_blank"
-              rel="noreferrer"
-              className="admin-view-site-link"
-            >
+            <a href="/" target="_blank" rel="noreferrer" className="admin-view-site-link">
               View Live Site &#8599;
             </a>
             <img src={user.avatar_url} alt="" className="admin-user-avatar" />
@@ -174,34 +215,47 @@ function AdminApp() {
       </header>
 
       <main className="admin-main">
+        <div style={{ display: activeTab === 'dashboard' ? 'block' : 'none' }}>
+          <Dashboard token={token} onNavigate={setActiveTab} />
+        </div>
         <div style={{ display: activeTab === 'site' ? 'block' : 'none' }}>
           <SiteEditor
-            token={token}
+            {...sharedProps}
             onDirtyChange={dirty => setDirtyMap(m => ({ ...m, site: dirty }))}
+            registerSave={fn => registerSaveHandler('site', fn)}
           />
         </div>
         <div style={{ display: activeTab === 'projects' ? 'block' : 'none' }}>
           <ProjectsEditor
-            token={token}
+            {...sharedProps}
             onDirtyChange={dirty => setDirtyMap(m => ({ ...m, projects: dirty }))}
+            registerSave={fn => registerSaveHandler('projects', fn)}
           />
         </div>
         <div style={{ display: activeTab === 'testimonials' ? 'block' : 'none' }}>
           <TestimonialsEditor
-            token={token}
+            {...sharedProps}
             onDirtyChange={dirty => setDirtyMap(m => ({ ...m, testimonials: dirty }))}
+            registerSave={fn => registerSaveHandler('testimonials', fn)}
           />
         </div>
         <div style={{ display: activeTab === 'services' ? 'block' : 'none' }}>
           <ServicesEditor
-            token={token}
+            {...sharedProps}
             onDirtyChange={dirty => setDirtyMap(m => ({ ...m, services: dirty }))}
+            registerSave={fn => registerSaveHandler('services', fn)}
           />
         </div>
         <div style={{ display: activeTab === 'image-guide' ? 'block' : 'none' }}>
           <ImageGuide />
         </div>
       </main>
+
+      <ToastStack toasts={toasts} onDismiss={dismissToast} />
+      <ConfirmModal
+        state={confirmState}
+        onResolve={value => confirmState?.resolveCallback(value)}
+      />
     </div>
   )
 }

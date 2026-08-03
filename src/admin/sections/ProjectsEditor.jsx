@@ -42,8 +42,8 @@ function emptyProject(id) {
   }
 }
 
-function ProjectsEditor({ token, onDirtyChange }) {
-  const { data, setData, loading, saving, error, savedAt, save, isDirty } = useJsonFile(
+function ProjectsEditor({ token, onDirtyChange, showToast, confirmAction, registerSave }) {
+  const { data, setData, loading, saving, error, save, isDirty } = useJsonFile(
     token,
     'src/data/projects.json'
   )
@@ -56,11 +56,7 @@ function ProjectsEditor({ token, onDirtyChange }) {
     onDirtyChange?.(isDirty)
   }, [isDirty, onDirtyChange])
 
-  if (loading) return <p className="admin-status">Loading projects…</p>
-  if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
-  if (!data) return null
-
-  const projects = data.projects
+  const projects = data?.projects
 
   function updateProject(index, field, value) {
     const next = [...projects]
@@ -74,8 +70,11 @@ function ProjectsEditor({ token, onDirtyChange }) {
     setExpandedId(id)
   }
 
-  function removeProject(index) {
-    if (!window.confirm(`Remove "${projects[index].title || 'this project'}"?`)) return
+  async function removeProject(index) {
+    const ok = await confirmAction?.(
+      `Remove "${projects[index].title || 'this project'}"? This can't be undone from here.`
+    )
+    if (!ok) return
     setData({ projects: projects.filter((_, i) => i !== index) })
   }
 
@@ -131,6 +130,7 @@ function ProjectsEditor({ token, onDirtyChange }) {
         ...project.images,
         { src: path, alt: project.title, label: '' },
       ])
+      showToast?.('Image uploaded to GitHub.')
     } catch (err) {
       setLocalError(err.message)
     }
@@ -144,8 +144,17 @@ function ProjectsEditor({ token, onDirtyChange }) {
       setLocalError('Every project needs a title and at least one image before saving.')
       return
     }
-    await save(data, 'Update projects via admin panel')
+    const ok = await save(data, 'Update projects via admin panel')
+    if (ok) showToast?.('Projects saved and pushed to GitHub.')
   }
+
+  useEffect(() => {
+    registerSave?.(handleSave)
+  })
+
+  if (loading) return <p className="admin-status">Loading projects…</p>
+  if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
+  if (!data) return null
 
   return (
     <div className="admin-section">
@@ -418,7 +427,7 @@ function ProjectsEditor({ token, onDirtyChange }) {
       </button>
 
       {localError && <p className="admin-status admin-status-error">{localError}</p>}
-      <SaveBar saving={saving} error={error} savedAt={savedAt} onSave={handleSave} />
+      <SaveBar saving={saving} error={error} onSave={handleSave} />
     </div>
   )
 }

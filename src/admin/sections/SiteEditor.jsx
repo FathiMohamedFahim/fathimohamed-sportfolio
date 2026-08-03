@@ -3,8 +3,8 @@ import { useJsonFile } from '../useJsonFile'
 import SaveBar from '../components/SaveBar'
 import FormField from '../components/FormField'
 
-function SiteEditor({ token, onDirtyChange }) {
-  const { data, setData, loading, saving, error, savedAt, save, isDirty } = useJsonFile(
+function SiteEditor({ token, onDirtyChange, showToast, registerSave }) {
+  const { data, setData, loading, saving, error, save, isDirty } = useJsonFile(
     token,
     'src/data/site.json'
   )
@@ -14,8 +14,22 @@ function SiteEditor({ token, onDirtyChange }) {
     onDirtyChange?.(isDirty)
   }, [isDirty, onDirtyChange])
 
+  async function handleSave() {
+    setLocalError(null)
+    if (!data.contact.email.includes('@')) {
+      setLocalError('Contact email looks invalid.')
+      return
+    }
+    const ok = await save(data, 'Update site settings via admin panel')
+    if (ok) showToast?.('Site settings saved and pushed to GitHub.')
+  }
+
+  useEffect(() => {
+    registerSave?.(handleSave)
+  })
+
   if (loading) return <p className="admin-status">Loading site content…</p>
-  if (error) return <p className="admin-status admin-status-error">{error}</p>
+  if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
   if (!data) return null
 
   function updateSection(section, field, value) {
@@ -36,15 +50,6 @@ function SiteEditor({ token, onDirtyChange }) {
   function removeStat(index) {
     const stats = data.about.stats.filter((_, i) => i !== index)
     updateSection('about', 'stats', stats)
-  }
-
-  async function handleSave() {
-    setLocalError(null)
-    if (!data.contact.email.includes('@')) {
-      setLocalError('Contact email looks invalid.')
-      return
-    }
-    await save(data, 'Update site settings via admin panel')
   }
 
   return (
@@ -229,7 +234,7 @@ function SiteEditor({ token, onDirtyChange }) {
       </div>
 
       {localError && <p className="admin-status admin-status-error">{localError}</p>}
-      <SaveBar saving={saving} error={error} savedAt={savedAt} onSave={handleSave} />
+      <SaveBar saving={saving} error={error} onSave={handleSave} />
     </div>
   )
 }

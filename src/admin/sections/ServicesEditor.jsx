@@ -16,8 +16,8 @@ function nextId(items) {
   return items.length ? Math.max(...items.map(i => i.id)) + 1 : 1
 }
 
-function ServicesEditor({ token, onDirtyChange }) {
-  const { data, setData, loading, saving, error, savedAt, save, isDirty } = useJsonFile(
+function ServicesEditor({ token, onDirtyChange, showToast, confirmAction, registerSave }) {
+  const { data, setData, loading, saving, error, save, isDirty } = useJsonFile(
     token,
     'src/data/services.json'
   )
@@ -27,11 +27,7 @@ function ServicesEditor({ token, onDirtyChange }) {
     onDirtyChange?.(isDirty)
   }, [isDirty, onDirtyChange])
 
-  if (loading) return <p className="admin-status">Loading services…</p>
-  if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
-  if (!data) return null
-
-  const services = data.services
+  const services = data?.services
 
   function update(index, field, value) {
     const next = [...services]
@@ -48,12 +44,15 @@ function ServicesEditor({ token, onDirtyChange }) {
     })
   }
 
-  function removeService(index) {
+  async function removeService(index) {
     if (services.length <= 1) {
       setLocalError('Keep at least one service.')
       return
     }
-    if (!window.confirm('Remove this service?')) return
+    const ok = await confirmAction?.(
+      `Remove "${services[index].title || 'this service'}"?`
+    )
+    if (!ok) return
     setData({ services: services.filter((_, i) => i !== index) })
   }
 
@@ -64,8 +63,17 @@ function ServicesEditor({ token, onDirtyChange }) {
       setLocalError('Every service needs a title before saving.')
       return
     }
-    await save(data, 'Update services via admin panel')
+    const ok = await save(data, 'Update services via admin panel')
+    if (ok) showToast?.('Services saved and pushed to GitHub.')
   }
+
+  useEffect(() => {
+    registerSave?.(handleSave)
+  })
+
+  if (loading) return <p className="admin-status">Loading services…</p>
+  if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
+  if (!data) return null
 
   return (
     <div className="admin-section">
@@ -118,7 +126,7 @@ function ServicesEditor({ token, onDirtyChange }) {
       </button>
 
       {localError && <p className="admin-status admin-status-error">{localError}</p>}
-      <SaveBar saving={saving} error={error} savedAt={savedAt} onSave={handleSave} />
+      <SaveBar saving={saving} error={error} onSave={handleSave} />
     </div>
   )
 }

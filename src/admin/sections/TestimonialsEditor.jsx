@@ -7,8 +7,8 @@ function nextId(items) {
   return items.length ? Math.max(...items.map(i => i.id)) + 1 : 1
 }
 
-function TestimonialsEditor({ token, onDirtyChange }) {
-  const { data, setData, loading, saving, error, savedAt, save, isDirty } = useJsonFile(
+function TestimonialsEditor({ token, onDirtyChange, showToast, confirmAction, registerSave }) {
+  const { data, setData, loading, saving, error, save, isDirty } = useJsonFile(
     token,
     'src/data/testimonials.json'
   )
@@ -18,11 +18,7 @@ function TestimonialsEditor({ token, onDirtyChange }) {
     onDirtyChange?.(isDirty)
   }, [isDirty, onDirtyChange])
 
-  if (loading) return <p className="admin-status">Loading testimonials…</p>
-  if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
-  if (!data) return null
-
-  const testimonials = data.testimonials
+  const testimonials = data?.testimonials
 
   function update(index, field, value) {
     const next = [...testimonials]
@@ -39,8 +35,11 @@ function TestimonialsEditor({ token, onDirtyChange }) {
     })
   }
 
-  function removeTestimonial(index) {
-    if (!window.confirm('Remove this testimonial?')) return
+  async function removeTestimonial(index) {
+    const ok = await confirmAction?.(
+      `Remove the testimonial from "${testimonials[index].name || 'this client'}"?`
+    )
+    if (!ok) return
     setData({ testimonials: testimonials.filter((_, i) => i !== index) })
   }
 
@@ -51,8 +50,17 @@ function TestimonialsEditor({ token, onDirtyChange }) {
       setLocalError('Every testimonial needs both a quote and a name before saving.')
       return
     }
-    await save(data, 'Update testimonials via admin panel')
+    const ok = await save(data, 'Update testimonials via admin panel')
+    if (ok) showToast?.('Testimonials saved and pushed to GitHub.')
   }
+
+  useEffect(() => {
+    registerSave?.(handleSave)
+  })
+
+  if (loading) return <p className="admin-status">Loading testimonials…</p>
+  if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
+  if (!data) return null
 
   return (
     <div className="admin-section">
@@ -99,7 +107,7 @@ function TestimonialsEditor({ token, onDirtyChange }) {
       </button>
 
       {localError && <p className="admin-status admin-status-error">{localError}</p>}
-      <SaveBar saving={saving} error={error} savedAt={savedAt} onSave={handleSave} />
+      <SaveBar saving={saving} error={error} onSave={handleSave} />
     </div>
   )
 }

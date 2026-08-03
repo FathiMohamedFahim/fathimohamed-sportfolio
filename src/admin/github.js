@@ -130,3 +130,23 @@ export async function getAuthenticatedUser(token) {
   if (!res.ok) throw new Error('GitHub token is invalid or expired.')
   return res.json()
 }
+
+/**
+ * Fetch recent commits touching src/data/ (the content files this admin
+ * panel edits), for the activity feed on the dashboard.
+ */
+export async function getRecentActivity(token, limit = 8) {
+  const res = await fetch(
+    `${API_BASE}/commits?path=src/data&per_page=${limit}`,
+    { headers: authHeaders(token) }
+  )
+  if (!res.ok) return []
+  const commits = await res.json()
+  return commits.map(c => ({
+    sha: c.sha,
+    message: c.commit.message,
+    author: c.commit.author.name,
+    date: c.commit.author.date,
+    url: c.html_url,
+  }))
+}
