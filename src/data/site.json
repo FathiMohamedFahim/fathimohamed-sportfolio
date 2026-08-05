@@ -12,20 +12,11 @@
     "title": "Hi, I'm Fathi — I turn briefs into visuals people stop for.",
     "bio1": "I'm a graphic designer based in Kafr El-Shaikh, Egypt, working across advertising design, social media content, book covers and photo manipulation. I care about getting a design to feel finished — clean typography, a clear hierarchy, and a visual idea that actually fits the brief, not just a template with new colors.",
     "bio2": "Add a sentence or two here about the kind of clients or industries you'd like to work with next.",
-    "image": "/designs-img/About/About-Web.jpg",
+    "image": "/designs-img/0007-Spero Spathis/0001-Social media design.png",
     "stats": [
-      {
-        "number": "9+",
-        "label": "Projects Delivered"
-      },
-      {
-        "number": "3",
-        "label": "Design Categories"
-      },
-      {
-        "number": "100%",
-        "label": "Client Focused"
-      }
+      { "number": "9+", "label": "Projects Delivered" },
+      { "number": "3", "label": "Design Categories" },
+      { "number": "100%", "label": "Client Focused" }
     ]
   },
   "contact": {
