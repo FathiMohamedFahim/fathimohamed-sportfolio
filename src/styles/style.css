@@ -93,6 +93,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -1130,6 +1131,16 @@ header.scrolled .logo img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--spacing-2xl);
+}
+
+/* Grid items default to min-width: auto, so their intrinsic content width
+   (not the track's available space) was winning the size calculation and
+   blowing the whole page out horizontally on mobile, once the column
+   collapsed to a single 1fr track. This is the grid equivalent of the
+   flex min-width fix on .contact-method-text below. */
+.contact-info,
+.contact-form-container {
+  min-width: 0;
 }
 
 .contact-info {
