@@ -7,11 +7,22 @@
       "title": "Al-Khaleeji Real Estate",
       "client": "Al-Khaleeji Real Estate",
       "description": "Logo mockup and social media design for Al-Khaleeji Real Estate.",
-      "tools": ["Photoshop", "Illustrator"],
+      "tools": [
+        "Photoshop",
+        "Illustrator"
+      ],
       "role": "Branding & Social Media Design",
       "images": [
-        { "src": "/designs-img/0001-Al-Khaleeji-Real Estate/0001-Logo - Mocup.png", "alt": "Al-Khaleeji Real Estate logo mockup", "label": "Logo Mockup" },
-        { "src": "/designs-img/0001-Al-Khaleeji-Real Estate/0002-Social media design.png", "alt": "Al-Khaleeji Real Estate social media post", "label": "Social Media Design" }
+        {
+          "src": "/designs-img/0001-Al-Khaleeji-Real Estate/0002-Social media design.png",
+          "alt": "Al-Khaleeji Real Estate social media post",
+          "label": "Social Media Design"
+        },
+        {
+          "src": "/designs-img/0001-Al-Khaleeji-Real Estate/0001-Logo - Mocup.png",
+          "alt": "Al-Khaleeji Real Estate logo mockup",
+          "label": "Logo Mockup"
+        }
       ],
       "link": "#"
     },
@@ -21,11 +32,22 @@
       "categoryLabel": "Branding & Social Media",
       "title": "Al-Khaleeji Agricultural",
       "description": "Logo mockup and social media design for Al-Khaleeji Agricultural.",
-      "tools": ["Photoshop", "Illustrator"],
+      "tools": [
+        "Photoshop",
+        "Illustrator"
+      ],
       "role": "Branding & Social Media Design",
       "images": [
-        { "src": "/designs-img/0002- Al-Khaleeji-Agricultural/0001-logo-Mock up.png", "alt": "Al-Khaleeji Agricultural logo mockup", "label": "Logo Mockup" },
-        { "src": "/designs-img/0002- Al-Khaleeji-Agricultural/0002-Social media design.png", "alt": "Al-Khaleeji Agricultural social media post", "label": "Social Media Design" }
+        {
+          "src": "/designs-img/0002- Al-Khaleeji-Agricultural/0001-logo-Mock up.png",
+          "alt": "Al-Khaleeji Agricultural logo mockup",
+          "label": "Logo Mockup"
+        },
+        {
+          "src": "/designs-img/0002- Al-Khaleeji-Agricultural/0002-Social media design.png",
+          "alt": "Al-Khaleeji Agricultural social media post",
+          "label": "Social Media Design"
+        }
       ],
       "link": "#"
     },
@@ -36,11 +58,21 @@
       "title": "Arkan Real Estate",
       "client": "Arkan Real Estate",
       "description": "Logo design for Arkan Real Estate.",
-      "tools": ["Illustrator"],
+      "tools": [
+        "Illustrator"
+      ],
       "role": "Logo Design",
       "images": [
-        { "src": "/designs-img/0003-Arkan Real Estate/0001-logo-isolated.png", "alt": "Arkan Real Estate logo, isolated", "label": "Logo (Isolated)" },
-        { "src": "/designs-img/0003-Arkan Real Estate/0001-logo.png", "alt": "Arkan Real Estate logo", "label": "Logo" }
+        {
+          "src": "/designs-img/0003-Arkan Real Estate/0001-logo-isolated.png",
+          "alt": "Arkan Real Estate logo, isolated",
+          "label": "Logo (Isolated)"
+        },
+        {
+          "src": "/designs-img/0003-Arkan Real Estate/0001-logo.png",
+          "alt": "Arkan Real Estate logo",
+          "label": "Logo"
+        }
       ],
       "link": "#"
     },
@@ -50,11 +82,22 @@
       "categoryLabel": "Branding & Logo Design",
       "title": "Saeda Decor",
       "description": "Logo and logo mockup for Saeda Decor.",
-      "tools": ["Illustrator", "Photoshop"],
+      "tools": [
+        "Illustrator",
+        "Photoshop"
+      ],
       "role": "Logo Design",
       "images": [
-        { "src": "/designs-img/0004-Saeda Decor/0001-Logo.png", "alt": "Saeda Decor logo", "label": "Logo" },
-        { "src": "/designs-img/0004-Saeda Decor/0002-Logo - Mockup.png", "alt": "Saeda Decor logo mockup", "label": "Logo Mockup" }
+        {
+          "src": "/designs-img/0004-Saeda Decor/0001-Logo.png",
+          "alt": "Saeda Decor logo",
+          "label": "Logo"
+        },
+        {
+          "src": "/designs-img/0004-Saeda Decor/0002-Logo - Mockup.png",
+          "alt": "Saeda Decor logo mockup",
+          "label": "Logo Mockup"
+        }
       ],
       "link": "#"
     },
@@ -64,10 +107,16 @@
       "categoryLabel": "Social Media Design",
       "title": "Black Oud",
       "description": "Social media design for Black Oud.",
-      "tools": ["Photoshop"],
+      "tools": [
+        "Photoshop"
+      ],
       "role": "Social Media Design",
       "images": [
-        { "src": "/designs-img/0005-Black Oud/0001-Socila Media Design.png", "alt": "Black Oud social media design", "label": "Social Media Design" }
+        {
+          "src": "/designs-img/0005-Black Oud/0001-Socila Media Design.png",
+          "alt": "Black Oud social media design",
+          "label": "Social Media Design"
+        }
       ],
       "link": "#"
     },
@@ -77,10 +126,16 @@
       "categoryLabel": "Social Media Design",
       "title": "A&B Center",
       "description": "Social media design for A&B Center.",
-      "tools": ["Photoshop"],
+      "tools": [
+        "Photoshop"
+      ],
       "role": "Social Media Design",
       "images": [
-        { "src": "/designs-img/0006-A&B Center/0001-Social Design.png", "alt": "A&B Center social media design", "label": "Social Media Design" }
+        {
+          "src": "/designs-img/0006-A&B Center/0001-Social Design.png",
+          "alt": "A&B Center social media design",
+          "label": "Social Media Design"
+        }
       ],
       "link": "#"
     },
@@ -90,10 +145,16 @@
       "categoryLabel": "Social Media Design",
       "title": "Spero Spathis",
       "description": "Social media design for the Spero Spathis brand.",
-      "tools": ["Photoshop"],
+      "tools": [
+        "Photoshop"
+      ],
       "role": "Social Media Design",
       "images": [
-        { "src": "/designs-img/0007-Spero Spathis/0001-Social media design.png", "alt": "Spero Spathis social media design", "label": "Social Media Design" }
+        {
+          "src": "/designs-img/0007-Spero Spathis/0001-Social media design.png",
+          "alt": "Spero Spathis social media design",
+          "label": "Social Media Design"
+        }
       ],
       "link": "https://www.behance.net/gallery/232430237/Spero-Spathis-Social-Media-Design"
     },
@@ -103,10 +164,17 @@
       "categoryLabel": "Book Cover",
       "title": "History Book Cover",
       "description": "A captivating book cover design for a history publication with modern Egyptian style.",
-      "tools": ["Photoshop", "Illustrator"],
+      "tools": [
+        "Photoshop",
+        "Illustrator"
+      ],
       "role": "Cover Design",
       "images": [
-        { "src": "/designs-img/1.jpg", "alt": "History Book Cover Design", "label": "Book Cover" }
+        {
+          "src": "/designs-img/1.jpg",
+          "alt": "History Book Cover Design",
+          "label": "Book Cover"
+        }
       ],
       "link": "https://www.behance.net/gallery/206184489/HIstory-book-design"
     },
@@ -116,10 +184,17 @@
       "categoryLabel": "Book Cover",
       "title": "Math book cover",
       "description": "A modern and attractive cover design for a mathematics textbook with engaging visuals.",
-      "tools": ["Photoshop", "Illustrator"],
+      "tools": [
+        "Photoshop",
+        "Illustrator"
+      ],
       "role": "Cover Design",
       "images": [
-        { "src": "/designs-img/2.jpg", "alt": "Math Book Cover Design", "label": "Book Cover" }
+        {
+          "src": "/designs-img/2.jpg",
+          "alt": "Math Book Cover Design",
+          "label": "Book Cover"
+        }
       ],
       "link": "https://www.behance.net/gallery/206181715/Math-book-cover-for-mr-abdalazim-elbih"
     }
