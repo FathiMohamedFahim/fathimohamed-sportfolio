@@ -105,6 +105,18 @@ body {
   overflow-x: hidden;
 }
 
+/* Applied to <body> while the mobile off-canvas nav or the project lightbox
+   is open — see src/hooks/useBodyScrollLock.js. overflow:hidden alone
+   doesn't reliably block real scroll/touch input (confirmed in testing),
+   so this takes body out of flow at its current scroll offset instead; the
+   exact position is restored on unlock. */
+body.no-scroll {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
 a {
   text-decoration: none;
   color: var(--sky);
@@ -134,7 +146,8 @@ ul {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+[role='button']:focus-visible {
   outline: 2px solid var(--sky);
   outline-offset: 3px;
 }
@@ -160,6 +173,13 @@ textarea:focus-visible {
   color: var(--sky);
   margin-bottom: var(--spacing-sm);
   font-weight: var(--font-weight-medium);
+}
+
+/* The About section is a two-column grid (image | text), so its eyebrow
+   sits in a left-aligned text column rather than the centered layout most
+   other sections use. */
+.about-content .section-eyebrow {
+  text-align: left;
 }
 
 .section-title {
@@ -485,6 +505,40 @@ header.scrolled .logo img {
   display: inline-block;
 }
 
+.hero-title-typed {
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  border-right: 2px solid var(--sky);
+  width: 0;
+  animation:
+    hero-typing 1.2s steps(13, end) 0.3s forwards,
+    hero-cursor-blink 0.8s step-end infinite;
+}
+
+@keyframes hero-typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 15ch;
+  }
+}
+
+@keyframes hero-cursor-blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-typed {
+    animation: none;
+    width: auto;
+    border-right: none;
+  }
+}
+
 .hero-subtitle {
   font-family: var(--font-display);
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
@@ -786,7 +840,10 @@ header.scrolled .logo img {
   border: 1px solid var(--hairline);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  transition: transform var(--transition-fast), border-color var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity 0.3s ease;
   height: 100%;
 }
 
@@ -795,13 +852,28 @@ header.scrolled .logo img {
   border-color: var(--sky);
 }
 
+/* Matches :hover's specificity and comes after it in source order, so a
+   card that's mid-exit-animation while still hovered correctly shows the
+   slide-down/fade-out rather than the hover lift. */
+.project-card.project-card-hiding {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
 .project-image {
+  display: block;
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
   position: relative;
   background-color: var(--card-bg);
   cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-align: inherit;
+  color: inherit;
 }
 
 .project-image img {
@@ -1322,9 +1394,10 @@ header.scrolled .logo img {
   transform: scale(1.1);
 }
 
-.whatsapp-float img {
+.whatsapp-float svg {
   width: 32px;
   height: 32px;
+  color: #fff;
 }
 
 /* ========================

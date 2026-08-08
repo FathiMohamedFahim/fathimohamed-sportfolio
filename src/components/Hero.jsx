@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react'
-import Typed from 'typed.js'
+import { useScrollToSection } from '../hooks/useScrollToSection'
 import {
   FaBehance,
   FaInstagram,
@@ -12,30 +11,7 @@ import { projects } from '../data/projects'
 import { hero, social } from '../data/site'
 
 function Hero() {
-  const typedRef = useRef(null)
-  const typedInstanceRef = useRef(null)
-
-  useEffect(() => {
-    typedInstanceRef.current = new Typed(typedRef.current, {
-      strings: ["Fathi Mohamed"],
-      typeSpeed: 55,
-      backSpeed: 20,
-      showCursor: true,
-      cursorChar: '|',
-      loop: false,
-    })
-    return () => {
-      typedInstanceRef.current.destroy()
-    }
-  }, [])
-
-  function scrollToId(id) {
-    const target = document.querySelector(`#${id}`)
-    if (target) {
-      const headerHeight = document.querySelector('header').offsetHeight
-      window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' })
-    }
-  }
+  const scrollToSection = useScrollToSection()
 
   const preview = projects.slice(0, 3)
 
@@ -51,7 +27,7 @@ function Hero() {
             </span>
           )}
           <h1 className="hero-title">
-            <span ref={typedRef}></span>
+            <span className="hero-title-typed">Fathi Mohamed</span>
           </h1>
           <h2 className="hero-subtitle">{hero.subtitle}</h2>
           <p className="hero-description">{hero.description}</p>
@@ -62,7 +38,7 @@ function Hero() {
               className="btn btn-primary"
               onClick={e => {
                 e.preventDefault()
-                scrollToId('projects')
+                scrollToSection('projects')
               }}
             >
               {hero.primaryCtaText}
@@ -72,7 +48,7 @@ function Hero() {
               className="btn btn-secondary"
               onClick={e => {
                 e.preventDefault()
-                scrollToId('contact')
+                scrollToSection('contact')
               }}
             >
               {hero.secondaryCtaText}
@@ -113,7 +89,7 @@ function Hero() {
           aria-label="Scroll down to services section"
           onClick={e => {
             e.preventDefault()
-            scrollToId('services')
+            scrollToSection('services')
           }}
         >
           <FaChevronDown />

@@ -2,9 +2,11 @@ import { useEffect, useCallback, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { FaTimes, FaChevronLeft, FaChevronRight, FaQuoteLeft } from 'react-icons/fa'
 import { testimonials } from '../data/projects'
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock'
 
 function Lightbox({ project, onClose, onPrev, onNext }) {
   const [imageIndex, setImageIndex] = useState(0)
+  const { lock, unlock } = useBodyScrollLock()
 
   // Reset to the first image whenever a different project is opened.
   useEffect(() => {
@@ -20,12 +22,20 @@ function Lightbox({ project, onClose, onPrev, onNext }) {
     [onClose, onPrev, onNext]
   )
 
+  // Locked once for the lifetime of the lightbox being open (mount to
+  // unmount), deliberately independent of handleKeyDown's identity below —
+  // that changes on every onPrev/onNext navigation since the parent doesn't
+  // memoize those callbacks, and re-running a position:fixed lock/unlock on
+  // every image change would visibly flash the page each time.
+  useEffect(() => {
+    lock()
+    return unlock
+  }, [lock, unlock])
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown)
-    document.body.style.overflow = 'hidden'
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
-      document.body.style.overflow = ''
     }
   }, [handleKeyDown])
 

@@ -1,16 +1,7 @@
-const tools = [
-  'Photoshop',
-  'Illustrator',
-  'InDesign',
-  'Lightroom',
-  'Premiere Pro',
-  'After Effects',
-  'Canva',
-  'Figma',
-]
+import { TOOLS } from '../data/taxonomies'
 
 function ToolsMarquee() {
-  const track = [...tools, ...tools]
+  const track = [...TOOLS, ...TOOLS]
 
   return (
     <div className="tools-marquee" aria-hidden="true">

@@ -32,8 +32,13 @@ function App() {
       appearOnScroll.observe(fader)
     })
 
-    // Scroll animation for service/project cards and section titles
-    function handleScrollAnimation() {
+    // Scroll animation for service/project cards and section titles.
+    // Throttled to at most once per animation frame — 'scroll' can fire far
+    // more often than the browser actually paints during a fling-scroll,
+    // and this was previously running a full querySelectorAll +
+    // getBoundingClientRect pass on every single one of those events.
+    let scrollAnimationFrame = null
+    function runScrollAnimation() {
       const animatedElements = document.querySelectorAll(
         '.service-card, .project-card, .client-card, .contact-form, .section-title'
       )
@@ -43,6 +48,11 @@ function App() {
           element.classList.add('animate-in')
         }
       })
+      scrollAnimationFrame = null
+    }
+    function handleScrollAnimation() {
+      if (scrollAnimationFrame !== null) return
+      scrollAnimationFrame = requestAnimationFrame(runScrollAnimation)
     }
 
     window.addEventListener('scroll', handleScrollAnimation)
@@ -68,6 +78,7 @@ function App() {
 
     return () => {
       window.removeEventListener('scroll', handleScrollAnimation)
+      if (scrollAnimationFrame !== null) cancelAnimationFrame(scrollAnimationFrame)
       appearOnScroll.disconnect()
     }
   }, [])

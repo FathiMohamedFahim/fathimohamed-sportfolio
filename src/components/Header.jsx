@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FaSun, FaMoon } from 'react-icons/fa'
+import { useScrollToSection } from '../hooks/useScrollToSection'
+import { useBodyScrollLock } from '../hooks/useBodyScrollLock'
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -8,6 +10,8 @@ function Header() {
     if (typeof window === 'undefined') return 'dark'
     return localStorage.getItem('theme') || 'dark'
   })
+  const scrollToSection = useScrollToSection()
+  const { lock, unlock } = useBodyScrollLock()
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
@@ -28,26 +32,28 @@ function Header() {
   }, [])
 
   function toggleMenu() {
-    setMenuOpen(prev => !prev)
-    document.body.classList.toggle('no-scroll')
+    setMenuOpen(prev => {
+      const next = !prev
+      if (next) {
+        lock()
+      } else {
+        unlock()
+      }
+      return next
+    })
   }
 
   function closeMenu() {
-    setMenuOpen(false)
-    document.body.classList.remove('no-scroll')
+    setMenuOpen(open => {
+      if (open) unlock()
+      return false
+    })
   }
 
   function handleNavClick(e, href) {
     if (href.startsWith('#')) {
       e.preventDefault()
-      const target = document.querySelector(href)
-      if (target) {
-        const headerHeight = document.querySelector('header').offsetHeight
-        window.scrollTo({
-          top: target.offsetTop - headerHeight,
-          behavior: 'smooth',
-        })
-      }
+      scrollToSection(href.slice(1))
       closeMenu()
     } else {
       closeMenu()

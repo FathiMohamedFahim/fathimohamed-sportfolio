@@ -89,6 +89,32 @@ export async function updateJsonFile(token, path, jsonValue, sha, message) {
  * Upload an image file to public/designs-img/uploads/<filename> and return
  * the public path to use as an image src on the site.
  */
+const ALLOWED_IMAGE_TYPES = [
+  'image/png',
+  'image/jpeg',
+  'image/webp',
+  'image/gif',
+  'image/svg+xml',
+]
+const MAX_IMAGE_BYTES = 8 * 1024 * 1024 // 8 MB
+
+/**
+ * Checks a file before it's uploaded. Returns null if the file is fine, or
+ * a user-facing error string if it isn't. Deliberately checked client-side
+ * before any network call — GitHub's Contents API has no size/type limit of
+ * its own, and a bad upload becomes a permanent commit in git history.
+ */
+export function validateImageFile(file) {
+  if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
+    return `"${file.name}" isn't a supported image type. Use PNG, JPEG, WEBP, GIF, or SVG.`
+  }
+  if (file.size > MAX_IMAGE_BYTES) {
+    const mb = (file.size / (1024 * 1024)).toFixed(1)
+    return `"${file.name}" is ${mb} MB, which is over the 8 MB limit. Compress it and try again.`
+  }
+  return null
+}
+
 export async function uploadImage(token, file) {
   const safeName = file.name.replace(/\s+/g, '-').toLowerCase()
   const path = `public/designs-img/uploads/${Date.now()}-${safeName}`

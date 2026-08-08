@@ -1,27 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useJsonFile } from '../useJsonFile'
-import { uploadImage } from '../github'
+import { uploadImage, validateImageFile } from '../github'
 import SaveBar from '../components/SaveBar'
 import FormField from '../components/FormField'
+import { TOOLS, PROJECT_CATEGORIES, PROJECT_CATEGORY_LABELS } from '../../data/taxonomies'
 
-const CATEGORY_OPTIONS = ['branding', 'social', 'Book-Cover']
-const CATEGORY_LABEL_OPTIONS = [
-  'Branding & Logo Design',
-  'Branding & Social Media',
-  'Social Media Design',
-  'Book Cover',
-]
-const TOOL_OPTIONS = [
-  'Photoshop',
-  'Illustrator',
-  'InDesign',
-  'Lightroom',
-  'Premiere Pro',
-  'After Effects',
-  'Canva',
-  'Figma',
-  'CorelDRAW',
-]
+const CATEGORY_OPTIONS = PROJECT_CATEGORIES
+const CATEGORY_LABEL_OPTIONS = PROJECT_CATEGORY_LABELS
+const TOOL_OPTIONS = TOOLS
 
 function nextId(items) {
   return items.length ? Math.max(...items.map(i => i.id)) + 1 : 1
@@ -92,8 +78,17 @@ function ProjectsEditor({ token, onDirtyChange, showToast, confirmAction, regist
     updateProject(index, 'images', images)
   }
 
-  function removeImage(index, imgIndex) {
+  async function removeImage(index, imgIndex) {
     const project = projects[index]
+    if (project.images.length === 1) {
+      const ok = await confirmAction?.(
+        `Remove this image? "${project.title || 'This project'}" will have no images left until you upload another.`
+      )
+      if (!ok) return
+    } else {
+      const ok = await confirmAction?.('Remove this image?')
+      if (!ok) return
+    }
     updateProject(
       index,
       'images',
@@ -121,6 +116,11 @@ function ProjectsEditor({ token, onDirtyChange, showToast, confirmAction, regist
   }
 
   async function handleImageUpload(index, file) {
+    const validationError = validateImageFile(file)
+    if (validationError) {
+      setLocalError(validationError)
+      return
+    }
     setUploadingFor(`${index}`)
     setLocalError(null)
     try {
@@ -150,7 +150,7 @@ function ProjectsEditor({ token, onDirtyChange, showToast, confirmAction, regist
 
   useEffect(() => {
     registerSave?.(handleSave)
-  })
+  }, [registerSave, handleSave])
 
   if (loading) return <p className="admin-status">Loading projects…</p>
   if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
@@ -166,7 +166,17 @@ function ProjectsEditor({ token, onDirtyChange, showToast, confirmAction, regist
           <div className="admin-card admin-project-card" key={project.id}>
             <div
               className="admin-card-header admin-project-summary"
+              role="button"
+              tabIndex={0}
+              aria-expanded={isOpen}
+              aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${project.title || 'New project'}`}
               onClick={() => setExpandedId(isOpen ? null : project.id)}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  setExpandedId(isOpen ? null : project.id)
+                }
+              }}
             >
               {project.images[0] && (
                 <img
@@ -182,9 +192,9 @@ function ProjectsEditor({ token, onDirtyChange, showToast, confirmAction, regist
                   {project.images.length === 1 ? '' : 's'}
                 </span>
               </div>
-              <button type="button" className="admin-expand-btn">
+              <span className="admin-expand-btn" aria-hidden="true">
                 {isOpen ? 'Close' : 'Edit'}
-              </button>
+              </span>
             </div>
 
             {isOpen && (

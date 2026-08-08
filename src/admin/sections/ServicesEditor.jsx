@@ -69,7 +69,7 @@ function ServicesEditor({ token, onDirtyChange, showToast, confirmAction, regist
 
   useEffect(() => {
     registerSave?.(handleSave)
-  })
+  }, [registerSave, handleSave])
 
   if (loading) return <p className="admin-status">Loading services…</p>
   if (error && !data) return <p className="admin-status admin-status-error">{error}</p>

@@ -5,13 +5,22 @@
 // then hand the token back to the admin app's window using a postMessage
 // handshake.
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
 function errorPage(message) {
   const safeMessage = JSON.stringify(message)
   return `
     <!doctype html>
     <html>
       <body>
-        <p>${message}</p>
+        <p>${escapeHtml(message)}</p>
         <script>
           if (window.opener) {
             window.opener.postMessage('authorization:github:error:' + ${safeMessage}, '*')
@@ -23,7 +32,7 @@ function errorPage(message) {
 }
 
 export default async function handler(req, res) {
-  const { code, error, error_description: errorDescription } = req.query
+  const { code, error, error_description: errorDescription, state } = req.query
 
   if (error) {
     res.setHeader('Content-Type', 'text/html')
@@ -68,7 +77,7 @@ export default async function handler(req, res) {
       return
     }
 
-    const payload = JSON.stringify({ token: tokenData.access_token, provider: 'github' })
+    const payload = JSON.stringify({ token: tokenData.access_token, provider: 'github', state })
 
     // Handshake: the popup waits for an ack from the opener, then replies
     // with the token. See AdminApp.jsx for the other half of this.

@@ -1,4 +1,5 @@
 import { FaLinkedin, FaBehance, FaInstagram, FaGithub, FaFacebook } from 'react-icons/fa'
+import { social } from '../data/site'
 
 function Footer() {
   const currentYear = new Date().getFullYear()
@@ -19,44 +20,19 @@ function Footer() {
           </div>
 
           <div className="footer-social no-fade">
-            <a
-              href="https://www.linkedin.com/in/fathi-mohamed-fahim-15a593313/"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn Profile"
-            >
+            <a href={social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn Profile">
               <FaLinkedin />
             </a>
-            <a
-              href="https://www.behance.net/fathimohamedfahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Behance Profile"
-            >
+            <a href={social.behance} target="_blank" rel="noreferrer" aria-label="Behance Profile">
               <FaBehance />
             </a>
-            <a
-              href="https://www.instagram.com/fathi.mohamed.fahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram Profile"
-            >
+            <a href={social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram Profile">
               <FaInstagram />
             </a>
-            <a
-              href="https://github.com/FathiMohamedFahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub Profile"
-            >
+            <a href={social.github} target="_blank" rel="noreferrer" aria-label="GitHub Profile">
               <FaGithub />
             </a>
-            <a
-              href="https://www.facebook.com/fathi.mohamed.fahim"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Facebook Profile"
-            >
+            <a href={social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook Profile">
               <FaFacebook />
             </a>
           </div>

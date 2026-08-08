@@ -9,9 +9,7 @@ function About() {
             <img src={about.image} alt="Fathi Mohamed design work" loading="lazy" />
           </div>
           <div className="about-content">
-            <span className="section-eyebrow" style={{ textAlign: 'left' }}>
-              About Me
-            </span>
+            <span className="section-eyebrow">About Me</span>
             <h2 className="about-title">{about.title}</h2>
             <p className="about-text">{about.bio1}</p>
             <p className="about-text">{about.bio2}</p>

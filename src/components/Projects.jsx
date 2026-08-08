@@ -1,9 +1,11 @@
 import { useState, useMemo } from 'react'
 import { FaExternalLinkAlt, FaSearchPlus } from 'react-icons/fa'
 import { projects } from '../data/projects'
+import { useScrollToSection } from '../hooks/useScrollToSection'
 import Lightbox from './Lightbox'
 
 function Projects() {
+  const scrollToSection = useScrollToSection()
   const filters = useMemo(() => {
     const seen = new Map()
     seen.set('all', 'All')
@@ -84,15 +86,15 @@ function Projects() {
             return (
               <div
                 key={project.id}
-                className="project-card"
+                className={`project-card${isHiding ? ' project-card-hiding' : ''}`}
                 data-category={project.category}
-                style={{
-                  opacity: isHiding ? 0 : 1,
-                  transform: isHiding ? 'translateY(20px)' : 'translateY(0)',
-                  transition: 'opacity 0.3s ease, transform 0.3s ease',
-                }}
               >
-                <div className="project-image" onClick={() => openLightbox(project)}>
+                <button
+                  type="button"
+                  className="project-image"
+                  onClick={() => openLightbox(project)}
+                  aria-label={`View ${project.title} images`}
+                >
                   <img src={project.images[0].src} alt={project.images[0].alt} loading="lazy" />
                   {project.images.length > 1 && (
                     <span className="project-image-count">1 / {project.images.length}</span>
@@ -102,7 +104,7 @@ function Projects() {
                       <FaSearchPlus /> View
                     </span>
                   </div>
-                </div>
+                </button>
                 <div className="project-content">
                   <span className="project-category">{project.categoryLabel}</span>
                   <h3 className="project-title">{project.title}</h3>
@@ -139,9 +141,7 @@ function Projects() {
             className="btn btn-primary"
             onClick={e => {
               e.preventDefault()
-              const target = document.querySelector('#contact')
-              const headerHeight = document.querySelector('header').offsetHeight
-              window.scrollTo({ top: target.offsetTop - headerHeight, behavior: 'smooth' })
+              scrollToSection('contact')
             }}
           >
             Let's Talk

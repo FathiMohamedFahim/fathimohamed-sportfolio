@@ -26,7 +26,7 @@ function SiteEditor({ token, onDirtyChange, showToast, registerSave }) {
 
   useEffect(() => {
     registerSave?.(handleSave)
-  })
+  }, [registerSave, handleSave])
 
   if (loading) return <p className="admin-status">Loading site content…</p>
   if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
@@ -139,7 +139,7 @@ function SiteEditor({ token, onDirtyChange, showToast, registerSave }) {
             onChange={e => updateSection('about', 'bio2', e.target.value)}
           />
         </FormField>
-        <FormField label="Photo path" hint="e.g. /designs-img/0007-Spero Spathis/0001-Social media design.png — upload new images from the Projects tab, then paste the path here">
+        <FormField label="Photo path" hint="e.g. /designs-img/0007-Spero-Spathis/0001-Social-media-design.png — upload new images from the Projects tab, then paste the path here">
           <input
             type="text"
             value={data.about.image}

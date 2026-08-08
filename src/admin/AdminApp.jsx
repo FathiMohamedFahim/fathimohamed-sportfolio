@@ -10,6 +10,7 @@ import ToastStack from './components/Toast'
 import ConfirmModal from './components/ConfirmModal'
 
 const TOKEN_KEY = 'admin_github_token'
+const OAUTH_STATE_KEY = 'admin_github_oauth_state'
 let toastCounter = 0
 
 const TABS = [
@@ -84,6 +85,7 @@ function AdminApp() {
   }, [activeTab])
 
   const handleMessage = useCallback(event => {
+    if (event.origin !== window.location.origin) return
     if (typeof event.data !== 'string') return
 
     if (event.data === 'authorizing:github') {
@@ -96,6 +98,13 @@ function AdminApp() {
         const payload = JSON.parse(
           event.data.replace('authorization:github:success:', '')
         )
+        const expectedState = sessionStorage.getItem(OAUTH_STATE_KEY)
+        sessionStorage.removeItem(OAUTH_STATE_KEY)
+        if (!expectedState || payload.state !== expectedState) {
+          setAuthError('Login could not be verified. Please try again.')
+          popupRef.current?.close()
+          return
+        }
         localStorage.setItem(TOKEN_KEY, payload.token)
         setToken(payload.token)
         popupRef.current?.close()
@@ -139,8 +148,11 @@ function AdminApp() {
     const height = 700
     const left = window.screenX + (window.outerWidth - width) / 2
     const top = window.screenY + (window.outerHeight - height) / 2
+    const state =
+      window.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2) + Date.now()
+    sessionStorage.setItem(OAUTH_STATE_KEY, state)
     popupRef.current = window.open(
-      '/api/auth',
+      `/api/auth?state=${encodeURIComponent(state)}`,
       'github-oauth',
       `width=${width},height=${height},left=${left},top=${top}`
     )

@@ -17,11 +17,14 @@ export default function handler(req, res) {
   const protocol = req.headers['x-forwarded-proto'] || 'https'
   const redirectUri = `${protocol}://${host}/api/callback`
 
+  const { state } = req.query
+
   const authorizeUrl =
     `https://github.com/login/oauth/authorize` +
     `?client_id=${encodeURIComponent(clientId)}` +
     `&redirect_uri=${encodeURIComponent(redirectUri)}` +
-    `&scope=repo`
+    `&scope=repo` +
+    (state ? `&state=${encodeURIComponent(state)}` : '')
 
   res.writeHead(302, { Location: authorizeUrl })
   res.end()

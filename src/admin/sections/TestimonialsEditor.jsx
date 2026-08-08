@@ -56,7 +56,7 @@ function TestimonialsEditor({ token, onDirtyChange, showToast, confirmAction, re
 
   useEffect(() => {
     registerSave?.(handleSave)
-  })
+  }, [registerSave, handleSave])
 
   if (loading) return <p className="admin-status">Loading testimonials…</p>
   if (error && !data) return <p className="admin-status admin-status-error">{error}</p>
