@@ -191,24 +191,6 @@
         }
       ],
       "link": "https://www.behance.net/gallery/206181715/Math-book-cover-for-mr-abdalazim-elbih"
-    },
-    {
-      "id": 10,
-      "category": "social",
-      "categoryLabel": "Social Media Design",
-      "title": "Test",
-      "client": "test",
-      "description": "test",
-      "tools": [],
-      "role": "test",
-      "images": [
-        {
-          "src": "/designs-img/uploads/1786283604197-slide-3.jpg",
-          "alt": "",
-          "label": ""
-        }
-      ],
-      "link": "#"
     }
   ]
 }
