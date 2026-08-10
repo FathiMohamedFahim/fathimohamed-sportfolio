@@ -91,6 +91,29 @@
       "challenge": "Create a professional and distinctive logo for an agricultural reclamation company that reflects its connection to agriculture, land development, and sustainable growth.",
       "approach": "I developed a modern visual symbol inspired by agricultural elements, combining a wheat ear with stylized land and field lines. The green color represents agriculture, growth, and sustainability, while the gold typography adds a professional and premium character to the identity.",
       "result": "A clean and memorable logo that communicates the company's agricultural focus while maintaining a professional and modern visual presence suitable for branding, digital platforms, and corporate applications."
+    },
+    {
+      "id": 5,
+      "category": "social",
+      "categoryLabel": "Social Media Design",
+      "title": "Black Oud – Social Media Design",
+      "client": "Black Oud",
+      "description": "An informal social media post design created for Black Oud to promote a premium natural oud product. The design combines warm, luxurious tones with an elegant Eastern-inspired atmosphere to communicate the product’s natural character, authenticity, and premium quality.",
+      "tools": [
+        "Photoshop"
+      ],
+      "role": "Graphic Designer",
+      "images": [
+        {
+          "src": "/designs-img/uploads/1786376556272-0005-black-oud-socila-media-design.png",
+          "alt": "Black Oud – Social Media Design",
+          "label": "Social Media Design"
+        }
+      ],
+      "link": "#",
+      "challenge": "Create an engaging social media post for Black Oud that presents the product in a luxurious and authentic visual environment while highlighting its natural Eastern character.",
+      "approach": "I created a warm, premium composition using a dark interior setting, golden lighting, traditional decorative elements, and the oud product as the main focal point. The typography and gold accents were designed to reinforce the luxurious and authentic character of the product.",
+      "result": "A visually rich social media design that presents Black Oud as a premium, authentic product and creates a strong connection between the product and the traditional Eastern atmosphere."
     }
   ]
 }
