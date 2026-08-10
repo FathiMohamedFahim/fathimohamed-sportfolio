@@ -3,14 +3,14 @@
     {
       "id": 1,
       "category": "social",
-      "categoryLabel": "Branding & Social Media",
-      "title": "Al-Khaleeji Real Estate",
+      "categoryLabel": "Social Media Design",
+      "title": "Al-Khaliji Real Estate — Social Media Post Design",
       "client": "Al-Khaleeji Real Estate",
-      "description": "Social media design for Al-Khaleeji Real Estate.",
+      "description": "A professional social media post designed for Al-Khaliji Real Estate to promote real estate investment and communicate the brand's services in a modern, trustworthy, and visually engaging way. The design combines a dark architectural background with a refined blue and orange color palette to create a premium real estate aesthetic.",
       "tools": [
         "Photoshop"
       ],
-      "role": "Social Media Design",
+      "role": "Graphic Designer",
       "images": [
         {
           "src": "/designs-img/0001-Al-Khaleeji-Real Estate/0002-Social media design.png",
@@ -18,179 +18,10 @@
           "label": "Social Media Design"
         }
       ],
-      "link": "https://www.behance.net/gallery/254027305/Al-Khaleeji-Real-Estate-Social-media-design"
-    },
-    {
-      "id": 2,
-      "category": "branding",
-      "categoryLabel": "Branding & Social Media",
-      "title": "Al-Khaleeji Agricultural",
-      "description": "Logo mockup and social media design for Al-Khaleeji Agricultural.",
-      "tools": [
-        "Photoshop",
-        "Illustrator"
-      ],
-      "role": "Branding & Social Media Design",
-      "images": [
-        {
-          "src": "/designs-img/0002- Al-Khaleeji-Agricultural/0001-logo-Mock up.png",
-          "alt": "Al-Khaleeji Agricultural logo mockup",
-          "label": "Logo Mockup"
-        },
-        {
-          "src": "/designs-img/0002- Al-Khaleeji-Agricultural/0002-Social media design.png",
-          "alt": "Al-Khaleeji Agricultural social media post",
-          "label": "Social Media Design"
-        }
-      ],
-      "link": "#"
-    },
-    {
-      "id": 3,
-      "category": "branding",
-      "categoryLabel": "Branding & Logo Design",
-      "title": "Arkan Real Estate",
-      "client": "Arkan Real Estate",
-      "description": "Logo design for Arkan Real Estate.",
-      "tools": [
-        "Illustrator"
-      ],
-      "role": "Logo Design",
-      "images": [
-        {
-          "src": "/designs-img/0003-Arkan Real Estate/0001-logo-isolated.png",
-          "alt": "Arkan Real Estate logo, isolated",
-          "label": "Logo (Isolated)"
-        },
-        {
-          "src": "/designs-img/0003-Arkan Real Estate/0001-logo.png",
-          "alt": "Arkan Real Estate logo",
-          "label": "Logo"
-        }
-      ],
-      "link": "#"
-    },
-    {
-      "id": 4,
-      "category": "branding",
-      "categoryLabel": "Branding & Logo Design",
-      "title": "Saeda Decor",
-      "description": "Logo and logo mockup for Saeda Decor.",
-      "tools": [
-        "Illustrator",
-        "Photoshop"
-      ],
-      "role": "Logo Design",
-      "images": [
-        {
-          "src": "/designs-img/0004-Saeda Decor/0001-Logo.png",
-          "alt": "Saeda Decor logo",
-          "label": "Logo"
-        },
-        {
-          "src": "/designs-img/0004-Saeda Decor/0002-Logo - Mockup.png",
-          "alt": "Saeda Decor logo mockup",
-          "label": "Logo Mockup"
-        }
-      ],
-      "link": "#"
-    },
-    {
-      "id": 5,
-      "category": "social",
-      "categoryLabel": "Social Media Design",
-      "title": "Black Oud",
-      "description": "Social media design for Black Oud.",
-      "tools": [
-        "Photoshop"
-      ],
-      "role": "Social Media Design",
-      "images": [
-        {
-          "src": "/designs-img/0005-Black Oud/0001-Socila Media Design.png",
-          "alt": "Black Oud social media design",
-          "label": "Social Media Design"
-        }
-      ],
-      "link": "#"
-    },
-    {
-      "id": 6,
-      "category": "social",
-      "categoryLabel": "Social Media Design",
-      "title": "A&B Center",
-      "description": "Social media design for A&B Center.",
-      "tools": [
-        "Photoshop"
-      ],
-      "role": "Social Media Design",
-      "images": [
-        {
-          "src": "/designs-img/0006-A&B Center/0001-Social Design.png",
-          "alt": "A&B Center social media design",
-          "label": "Social Media Design"
-        }
-      ],
-      "link": "#"
-    },
-    {
-      "id": 7,
-      "category": "social",
-      "categoryLabel": "Social Media Design",
-      "title": "Spero Spathis",
-      "description": "Social media design for the Spero Spathis brand.",
-      "tools": [
-        "Photoshop"
-      ],
-      "role": "Social Media Design",
-      "images": [
-        {
-          "src": "/designs-img/0007-Spero Spathis/0001-Social media design.png",
-          "alt": "Spero Spathis social media design",
-          "label": "Social Media Design"
-        }
-      ],
-      "link": "https://www.behance.net/gallery/232430237/Spero-Spathis-Social-Media-Design"
-    },
-    {
-      "id": 8,
-      "category": "book-cover",
-      "categoryLabel": "Book Cover",
-      "title": "History Book Cover",
-      "description": "A captivating book cover design for a history publication with modern Egyptian style.",
-      "tools": [
-        "Photoshop",
-        "Illustrator"
-      ],
-      "role": "Cover Design",
-      "images": [
-        {
-          "src": "/designs-img/1.jpg",
-          "alt": "History Book Cover Design",
-          "label": "Book Cover"
-        }
-      ],
-      "link": "https://www.behance.net/gallery/206184489/HIstory-book-design"
-    },
-    {
-      "id": 9,
-      "category": "book-cover",
-      "categoryLabel": "Book Cover",
-      "title": "Math book cover",
-      "description": "A modern and attractive cover design for a mathematics textbook with engaging visuals.",
-      "tools": [
-        "Photoshop",
-        "Illustrator"
-      ],
-      "role": "Cover Design",
-      "images": [
-        {
-          "src": "/designs-img/2.jpg",
-          "alt": "Math Book Cover Design",
-          "label": "Book Cover"
-        }
-      ],
-      "link": "https://www.behance.net/gallery/206181715/Math-book-cover-for-mr-abdalazim-elbih"
+      "link": "#",
+      "challenge": "Create a professional social media advertisement for Al-Khaliji Real Estate that promotes real estate investment and highlights the company's key services while maintaining a modern and trustworthy visual appearance.",
+      "approach": "I developed a premium visual composition using a dark architectural environment as the main background, supported by a blue and orange color palette. The layout combines Arabic promotional typography, service icons, contact information, and real estate imagery to create a clear visual hierarchy while maintaining a strong corporate feel.",
+      "result": "The final design delivers a modern and professional social media advertisement that communicates Al-Khaliji Real Estate's services clearly and builds a sense of trust and credibility. The combination of architectural imagery, strong typography, and contrasting brand colors creates an engaging visual suitable for real estate marketing campaigns."
     }
   ]
 }
