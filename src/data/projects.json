@@ -160,6 +160,27 @@
       "challenge": "Create a distinctive book cover for Mr. El-Khodewy that reflects historical and educational content while giving the book a strong, premium, and memorable visual identity.",
       "approach": "I used a dark black-and-gold visual direction inspired by ancient Egyptian aesthetics. The central historical figure, metallic gold typography, and restrained composition were combined to create a sophisticated cover that connects the subject with Egyptian history while maintaining a modern professional appearance.",
       "result": "A complete book-cover design presented across the front cover, back cover, and spine, with a cohesive visual language suitable for a printed educational and historical publication."
+    },
+    {
+      "id": 8,
+      "category": "book-cover",
+      "categoryLabel": "Book Cover",
+      "title": "Al-Beyh – Book Cover Design",
+      "client": "Mr. Abdelazim El-Bey",
+      "description": "A professional math guide book cover design created for Mr. Abdelazim El-Bey. The design combines educational elements, mathematical symbols, and a friendly student character to create an engaging and approachable visual identity for educational content. The blue color palette and dynamic composition were chosen to communicate clarity, energy, and a student-friendly learning experience.",
+      "tools": [],
+      "role": "Graphic Designer — Book Cover Design & Print Design",
+      "images": [
+        {
+          "src": "/designs-img/uploads/1786377170966-02-book-design.png",
+          "alt": "Al-Beyh – Book Cover Design",
+          "label": ""
+        }
+      ],
+      "link": "#",
+      "challenge": "The client needed a professional and engaging book cover for a mathematics guide aimed at school students. The design needed to communicate the educational nature of the book while remaining visually attractive and approachable for younger learners.",
+      "approach": "I developed a visually dynamic composition built around a student character, mathematical symbols, numbers, and educational elements. A blue-based color palette was used to create a clean and energetic academic feel, while the typography and visual hierarchy were carefully arranged to keep the book title and essential information clear and prominent. Adobe Photoshop was used to create and refine the complete cover design.",
+      "result": "The final design delivers a modern and engaging educational book cover that combines academic content with a friendly visual style. The result is designed to stand out on a bookshelf while maintaining clear communication and a professional appearance suitable for educational publishing."
     }
   ]
 }
