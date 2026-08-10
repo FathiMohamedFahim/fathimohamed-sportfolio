@@ -45,6 +45,29 @@
       "challenge": "Design a distinctive and professional logo for Al-Khaleegi Real Estate that reflects the company's focus on real estate investment while establishing a sense of trust, stability, luxury, and long-term growth.",
       "approach": "I developed the logo around a stylized architectural skyline to represent the real estate industry and the idea of growth and development. The combination of gold and dark tones creates a luxurious and premium appearance, while the Arabic typography reinforces the brand's local identity and connection to the regional market.",
       "result": "The final logo presents Al-Khaleegi Real Estate as a modern, trustworthy, and premium real estate brand. The architectural symbol and refined gold treatment create a strong visual identity that can be applied across digital platforms, marketing materials, and corporate branding."
+    },
+    {
+      "id": 3,
+      "category": "social",
+      "categoryLabel": "Social Media Design",
+      "title": "Al-Khaliji Agricultural Reclamation Co. — Social Media Post Design",
+      "client": "Al-Khaliji Agricultural Reclamation Co.",
+      "description": "A professional social media post designed for Al-Khaliji Agricultural Reclamation Co. to promote its agricultural land reclamation and development services. The design uses a vibrant green visual direction, agricultural imagery, and structured service sections to communicate the company's capabilities and commitment to sustainable agricultural development.",
+      "tools": [
+        "Photoshop"
+      ],
+      "role": "Graphic Designer",
+      "images": [
+        {
+          "src": "/designs-img/uploads/1786375949692-0003-al-khaleeji-agricultural-reform--social-medai-design.png",
+          "alt": "Al-Khaliji Agricultural Reclamation Co. — Social Media Post Design",
+          "label": "Social media design"
+        }
+      ],
+      "link": "#",
+      "challenge": "Create an engaging social media design for Al-Khaliji Agricultural Reclamation Co. that highlights its agricultural services, land development capabilities, and commitment to supporting modern and sustainable agriculture.",
+      "approach": "I built the design around a strong agricultural visual theme using a green color palette and a wide farmland image as the main visual. The services were organized into three clear sections, supported by custom-style icons and concise Arabic messaging to make the information easy to scan while maintaining a professional corporate appearance.",
+      "result": "The final design presents the company's agricultural services in a clear, professional, and visually engaging format. The combination of natural imagery, green tones, structured information, and strong typography creates a cohesive social media advertisement suited to the agricultural and land reclamation industry."
     }
   ]
 }
