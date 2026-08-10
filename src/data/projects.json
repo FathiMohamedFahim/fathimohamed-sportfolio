@@ -68,6 +68,29 @@
       "challenge": "Create an engaging social media design for Al-Khaliji Agricultural Reclamation Co. that highlights its agricultural services, land development capabilities, and commitment to supporting modern and sustainable agriculture.",
       "approach": "I built the design around a strong agricultural visual theme using a green color palette and a wide farmland image as the main visual. The services were organized into three clear sections, supported by custom-style icons and concise Arabic messaging to make the information easy to scan while maintaining a professional corporate appearance.",
       "result": "The final design presents the company's agricultural services in a clear, professional, and visually engaging format. The combination of natural imagery, green tones, structured information, and strong typography creates a cohesive social media advertisement suited to the agricultural and land reclamation industry."
+    },
+    {
+      "id": 4,
+      "category": "social",
+      "categoryLabel": "Social Media Design",
+      "title": "Al-Khaleegi Agricultural Reclamation – Logo Design",
+      "client": "Al-Khaleegi for Agricultural Reclamation",
+      "description": "A modern and professional logo design created for Al-Khaleegi for Agricultural Reclamation. The visual identity combines agricultural elements with a clean, contemporary style to communicate growth, sustainability, development, and professionalism.",
+      "tools": [
+        "Photoshop"
+      ],
+      "role": "Graphic Designer",
+      "images": [
+        {
+          "src": "/designs-img/uploads/1786376343973-0004-al-khaleeji-agricultural-reform--logo-design.png",
+          "alt": "Al-Khaleegi Agricultural Reclamation – Logo Design",
+          "label": ""
+        }
+      ],
+      "link": "#",
+      "challenge": "Create a professional and distinctive logo for an agricultural reclamation company that reflects its connection to agriculture, land development, and sustainable growth.",
+      "approach": "I developed a modern visual symbol inspired by agricultural elements, combining a wheat ear with stylized land and field lines. The green color represents agriculture, growth, and sustainability, while the gold typography adds a professional and premium character to the identity.",
+      "result": "A clean and memorable logo that communicates the company's agricultural focus while maintaining a professional and modern visual presence suitable for branding, digital platforms, and corporate applications."
     }
   ]
 }
