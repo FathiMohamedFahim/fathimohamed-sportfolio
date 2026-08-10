@@ -137,6 +137,29 @@
       "challenge": "Create an eye-catching social media post for Spero Spathis that communicates the freshness and energetic character of its orange drink.",
       "approach": "I built a vibrant composition around the product using oranges, fresh leaves, water splashes, and a warm orange-to-yellow background. The dynamic arrangement and strong product focus were designed to create a juicy, refreshing, and energetic feeling.",
       "result": "A bold and engaging social media visual that highlights the product while communicating freshness, energy, and the refreshing character of the orange drink."
+    },
+    {
+      "id": 7,
+      "category": "book-cover",
+      "categoryLabel": "Book Cover",
+      "title": "Al-Khodewy – Book Cover Design",
+      "client": "Mr. Mohamed Ballasi",
+      "description": "A professional book cover design created for Mr. El-Khodewy, inspired by ancient Egyptian heritage and historical themes. The design combines a dark premium aesthetic with Egyptian-inspired visual elements and gold typography to communicate knowledge, strength, and history.",
+      "tools": [
+        "Photoshop"
+      ],
+      "role": "Graphic Designer",
+      "images": [
+        {
+          "src": "/designs-img/uploads/1786376920944-01-book-design.png",
+          "alt": "Al-Khodewy – Book Cover Design",
+          "label": ""
+        }
+      ],
+      "link": "#",
+      "challenge": "Create a distinctive book cover for Mr. El-Khodewy that reflects historical and educational content while giving the book a strong, premium, and memorable visual identity.",
+      "approach": "I used a dark black-and-gold visual direction inspired by ancient Egyptian aesthetics. The central historical figure, metallic gold typography, and restrained composition were combined to create a sophisticated cover that connects the subject with Egyptian history while maintaining a modern professional appearance.",
+      "result": "A complete book-cover design presented across the front cover, back cover, and spine, with a cohesive visual language suitable for a printed educational and historical publication."
     }
   ]
 }
