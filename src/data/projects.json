@@ -114,6 +114,29 @@
       "challenge": "Create an engaging social media post for Black Oud that presents the product in a luxurious and authentic visual environment while highlighting its natural Eastern character.",
       "approach": "I created a warm, premium composition using a dark interior setting, golden lighting, traditional decorative elements, and the oud product as the main focal point. The typography and gold accents were designed to reinforce the luxurious and authentic character of the product.",
       "result": "A visually rich social media design that presents Black Oud as a premium, authentic product and creates a strong connection between the product and the traditional Eastern atmosphere."
+    },
+    {
+      "id": 6,
+      "category": "social",
+      "categoryLabel": "Social Media Design",
+      "title": "Spero Spathis – Social Media Design",
+      "client": "Spero Spathis",
+      "description": "An informal social media post design created for Spero Spathis to promote its refreshing orange drink. The composition uses vibrant orange tones, fresh citrus elements, dynamic water splashes, and the product as the main focal point to create an energetic and refreshing visual.",
+      "tools": [
+        "Photoshop"
+      ],
+      "role": "Graphic Designer",
+      "images": [
+        {
+          "src": "/designs-img/uploads/1786376736574-0006-spero-spathis-social-media-design.png",
+          "alt": "Spero Spathis – Social Media Design",
+          "label": ""
+        }
+      ],
+      "link": "#",
+      "challenge": "Create an eye-catching social media post for Spero Spathis that communicates the freshness and energetic character of its orange drink.",
+      "approach": "I built a vibrant composition around the product using oranges, fresh leaves, water splashes, and a warm orange-to-yellow background. The dynamic arrangement and strong product focus were designed to create a juicy, refreshing, and energetic feeling.",
+      "result": "A bold and engaging social media visual that highlights the product while communicating freshness, energy, and the refreshing character of the orange drink."
     }
   ]
 }
